@@ -1,0 +1,123 @@
+[
+    {
+        "id": "1",
+        "name": "PTT - Sakarya University Campus Branch",
+        "latitude": 40.7438166,
+        "longitude": 30.3324093,
+        "category": "post_office",
+        "description": "The PTT branch located inside the campus.",
+        "image": "ptt.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7438166,30.3324093",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "2",
+        "name": "Central Library",
+        "latitude": 40.741753,
+        "longitude": 30.332127,
+        "category": "library",
+        "description": "The main library of Sakarya University.",
+        "image": "library.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.741753,30.332127",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "3",
+        "name": "Last Stop Bus Station",
+        "latitude": 40.7403243,
+        "longitude": 30.3289517,
+        "category": "bus_stop",
+        "description": "Bus and minibus stops located in the last stop area of the campus.",
+        "image": "bus_stop.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7403243,30.3289517",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "4",
+        "name": "Campus Cafe - Dining Hall",
+        "latitude": 40.7440126,
+        "longitude": 30.3303838,
+        "category": "cafe",
+        "description": "The campus dining hall and cafe area.",
+        "image": "cafe.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7440126,30.3303838",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "5",
+        "name": "Yeni Mosque (Adapazarı)",
+        "latitude": 40.773152,
+        "longitude": 30.403948,
+        "category": "mosque",
+        "description": "A mosque located at Yenicami Street No:1, Adapazarı.",
+        "image": "mosque_yenicami.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.773152,30.403948",
+        "address": "Adapazarı / Sakarya / Turkey"
+    },
+    {
+        "id": "6",
+        "name": "Gar Square",
+        "latitude": 40.7751923,
+        "longitude": 30.4011444,
+        "category": "square",
+        "description": "The Gar Square located in Adapazarı.",
+        "image": "square_gar.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7751923,30.4011444",
+        "address": "Adapazarı / Sakarya / Turkey"
+    },
+    {
+        "id": "7",
+        "name": "Unigarden",
+        "latitude": 40.7452962,
+        "longitude": 30.3293117,
+        "category": "cafe",
+        "description": "A cozy cafe and event space located in the Sakarya University campus.",
+        "image": "unigarden.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7452962,30.3293117",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "8",
+        "name": "İnsan ve Toplum Bilimleri Fakültesi",
+        "latitude": 40.7433798,
+        "longitude": 30.3351548,
+        "category": "faculty",
+        "description": "Faculty of Humanities and Social Sciences.",
+        "image": "humanities_faculty.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7433798,30.3351548",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "9",
+        "name": "Öğrenci İşleri Daire Başkanlığı",
+        "latitude": 40.743086,
+        "longitude": 30.33539,
+        "category": "administration",
+        "description": "Student Affairs Department of Sakarya University.",
+        "image": "student_affairs.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.743086,30.33539",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "10",
+        "name": "Sakarya Üniversitesi Fen Bilimleri Enstitüsü",
+        "latitude": 40.7431061,
+        "longitude": 30.3344142,
+        "category": "institute",
+        "description": "Institute of Science at Sakarya University.",
+        "image": "science_institute.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7431061,30.3344142",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "11",
+        "name": "Sakarya Üniversitesi Kahve Keyfi",
+        "latitude": 40.7426814,
+        "longitude": 30.3333046,
+        "category": "cafe",
+        "description": "A coffee place located inside Sakarya University campus.",
+        "image": "coffee_keyfi.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7426814,30.3333046",
+        "address": "Serdivan / Sakarya / Turkey"
+    }
+]
