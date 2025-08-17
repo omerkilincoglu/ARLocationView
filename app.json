@@ -22,17 +22,27 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "7FD9F5"
+        "backgroundColor": "7FD9F5",
+        "resizeMode": "contain"
       },
       "edgeToEdgeEnabled": true,
       "permissions": [
         "CAMERA",
         "ACCESS_FINE_LOCATION",
         "ACCESS_COARSE_LOCATION"
-      ]
+      ],
+      "package": "com.engomer.arlocationview"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "8f39bfea-17fe-4ee6-8700-5e850478cb28"
+      }
     }
   }
 }

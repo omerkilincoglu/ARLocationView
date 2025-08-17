@@ -17,7 +17,7 @@
         "longitude": 30.332127,
         "category": "library",
         "description": "The main library of Sakarya University.",
-        "image": "library.jpg",
+        "image": "library-uni.jpg",
         "maps_link": "https://www.google.com/maps/search/?api=1&query=40.741753,30.332127",
         "address": "Serdivan / Sakarya / Turkey"
     },
@@ -119,5 +119,104 @@
         "image": "coffee_keyfi.jpg",
         "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7426814,30.3333046",
         "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "12",
+        "name": "Mavi Durak Izgara",
+        "latitude": 40.7620514,
+        "longitude": 30.3614528,
+        "category": "cafe",
+        "description": "Popular local restaurant in Serdivan.",
+        "image": "mavidurak.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7620514,30.3614528",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "13",
+        "name": "Serdivan State Hospital",
+        "latitude": 40.7657505,
+        "longitude": 30.3738691,
+        "category": "hospital",
+        "description": "Public hospital serving Serdivan district.",
+        "image": "serdivan_hospital.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7657505,30.3738691",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "14",
+        "name": "Serdivan Police Station",
+        "latitude": 40.7652536,
+        "longitude": 30.3609474,
+        "category": "police",
+        "description": "Serdivan district police center.",
+        "image": "serdivan_police.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7652536,30.3609474",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "15",
+        "name": "Orta Garaj",
+        "latitude": 40.7740477,
+        "longitude": 30.3948328,
+        "category": "bus_stop",
+        "description": "Central bus garage in Adapazarı.",
+        "image": "ortagaraj.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7740477,30.3948328",
+        "address": "Adapazarı / Sakarya / Turkey"
+    },
+    {
+        "id": "16",
+        "name": "Sakarya Büyükşehir Bus Terminal",
+        "latitude": 40.7291306,
+        "longitude": 30.3796739,
+        "category": "bus_stop",
+        "description": "Main intercity bus terminal of Sakarya.",
+        "image": "sakarya_terminal.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7291306,30.3796739",
+        "address": "Adapazarı / Sakarya / Turkey"
+    },
+    {
+        "id": "17",
+        "name": "Sopeli",
+        "latitude": 40.6620919,
+        "longitude": 30.2161226,
+        "category": "park",
+        "description": "Nature retreat and restaurant area in Sapanca.",
+        "image": "sopeli.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.6620919,30.2161226",
+        "address": "Sapanca / Sakarya / Turkey"
+    },
+    {
+        "id": "18",
+        "name": "Tunatan Tesisleri Serdivan",
+        "latitude": 40.7589525,
+        "longitude": 30.3651987,
+        "category": "restaurant",
+        "description": "Popular restaurant and rest facility in Serdivan.",
+        "image": "tunatan.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7589525,30.3651987",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "19",
+        "name": "Sakarya University Campus Mosque",
+        "latitude": 40.7441317,
+        "longitude": 30.3340996,
+        "category": "mosque",
+        "description": "Main mosque of Sakarya University campus.",
+        "image": "campus_mosque.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7441317,30.3340996",
+        "address": "Serdivan / Sakarya / Turkey"
+    },
+    {
+        "id": "20",
+        "name": "YHT Arifiye Station",
+        "latitude": 40.7134365,
+        "longitude": 30.3556445,
+        "category": "bus_stop",
+        "description": "High-speed train station in Arifiye.",
+        "image": "yht_arifiye.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7134365,30.3556445",
+        "address": "Arifiye / Sakarya / Turkey"
     }
 ]

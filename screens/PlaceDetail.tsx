@@ -30,6 +30,7 @@ const categoryIcons: Record<
 > = {
   mosque: "mosque",
   cafe: "coffee",
+  restaurant: "silverware-fork-knife",
   library: "book",
   bus_stop: "bus",
   faculty: "school",
@@ -37,11 +38,33 @@ const categoryIcons: Record<
   post_office: "email",
   square: "city",
   institute: "domain",
+  hospital: "hospital-building",
+  police: "police-badge",
 };
 
 export default function PlaceDetail() {
   const route = useRoute<RouteProp<Params, "PlaceDetail">>();
-  const { place, dist } = route.params;
+  const { place, dist } = route.params ?? {};
+
+  // 📌 Eğer parametre yoksa profesyonel uyarı göster
+  if (!place) {
+    return (
+      <View style={styles.safeArea}>
+        <View style={styles.warningBox}>
+          <MaterialCommunityIcons
+            name="alert-circle-outline"
+            size={50}
+            color={Colors.error}
+            style={{ marginBottom: 10 }}
+          />
+          <Text style={styles.warningTitle}>No Place Data</Text>
+          <Text style={styles.warningText}>
+            Sorry, we could not load the details for this place.
+          </Text>
+        </View>
+      </View>
+    );
+  }
 
   const handleGetDirections = () => {
     const navUrl = `https://www.google.com/maps/dir/?api=1&destination=${place.latitude},${place.longitude}`;
@@ -57,7 +80,7 @@ export default function PlaceDetail() {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Fotoğraf */}
         <Image
-          source={imageMap[place.image]}
+          source={imageMap[place.image as keyof typeof imageMap]}
           style={styles.photo}
           resizeMode="cover"
         />
@@ -115,10 +138,23 @@ export default function PlaceDetail() {
           </View>
 
           {/* Ayrıntı linki */}
-          <Pressable onPress={handleOpenMaps}>
+          <Pressable
+            onPress={handleOpenMaps}
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <Text style={styles.linkText}>
-              For detailed location click here ↓
+              For detailed location click here
             </Text>
+            <MaterialCommunityIcons
+              name="arrow-down-bold-circle"
+              size={22}
+              color={Colors.accent}
+              style={{ marginLeft: 6 }}
+            />
           </Pressable>
 
           {/* Yön tarifi butonu */}
@@ -181,7 +217,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   linkText: {
-    fontSize: 14,
+    fontSize: 15,
     color: "orangered",
     fontWeight: "600",
     textAlign: "center",
@@ -190,7 +226,7 @@ const styles = StyleSheet.create({
   },
   button: {
     paddingVertical: 14,
-    backgroundColor: Colors.primaryDark, // koyu mavi
+    backgroundColor: Colors.primaryDark,
     borderRadius: 14,
     alignItems: "center",
     justifyContent: "center",
@@ -200,5 +236,22 @@ const styles = StyleSheet.create({
     color: Colors.white,
     fontWeight: "700",
     fontSize: 16,
+  },
+  warningBox: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  warningTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: Colors.error,
+    marginBottom: 6,
+  },
+  warningText: {
+    fontSize: 14,
+    color: Colors.textLight,
+    textAlign: "center",
   },
 });

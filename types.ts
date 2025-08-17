@@ -1,5 +1,4 @@
 // types.ts
-
 // Geçerli kategori tipleri
 export type PlaceCategory =
   | "library"
@@ -14,7 +13,10 @@ export type PlaceCategory =
   | "square"
   | "faculty"
   | "administration"
-  | "institute";
+  | "institute"
+  | "restaurant"   
+  | "hospital"     
+  | "police";      
 
 // Tek bir mekanın yapısını tanımlayan tip
 export type Place = {

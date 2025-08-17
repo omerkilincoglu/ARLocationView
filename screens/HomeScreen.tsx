@@ -2,6 +2,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
+  Text,
+  Pressable,
   StyleSheet,
   Dimensions,
   Image,
@@ -51,6 +53,11 @@ export default function HomeScreen() {
 
   const [sliderRaw, setSliderRaw] = useState(0.2);
   const maxDistance = 300 + sliderRaw * (MAX_DISTANCE_DEFAULT - 300);
+
+  const [paused, setPaused] = useState(false);
+  const lastMarkersRef = useRef<{ place: Place; dist: number; rel: number }[]>(
+    []
+  );
 
   const lastHeadingRef = useRef(0);
   const smoothAngle = (prev: number, next: number, alpha = 0.3) => {
@@ -138,11 +145,13 @@ export default function HomeScreen() {
   }, [isARActive, cameraPermission?.granted]);
 
   // 📍 Marker filtreleme
-  const filteredMarkers = useMemo<
-    { place: Place; dist: number; rel: number }[]
-  >(() => {
+  // 📍 Markerları hesapla ve ekranda gösterilecek listeyi döndür
+  // - Eğer pause aktif değilse: yeni markerleri hesapla ve kaydet
+  // - Eğer pause aktifse: yeni hesaplananları değil, en son kaydedilen markerleri göster (sabit kalıyor)
+  const filteredMarkers = useMemo(() => {
     if (!coords || heading === null) return [];
-    return (places as Place[])
+
+    const newMarkers = (places as Place[])
       .filter(
         (p) =>
           selectedCategories.length === 0 ||
@@ -156,7 +165,15 @@ export default function HomeScreen() {
       })
       .filter((m) => m.dist <= maxDistance)
       .sort((a, b) => a.dist - b.dist);
-  }, [coords, heading, maxDistance, selectedCategories]);
+
+    // eğer pause değilse yeni markerleri güncelle
+    if (!paused) {
+      lastMarkersRef.current = newMarkers;
+    }
+
+    // eğer pause ise son bilinen markerleri göster
+    return paused ? lastMarkersRef.current : newMarkers;
+  }, [coords, heading, maxDistance, selectedCategories, paused]);
 
   /** 📌 Normal Mod **/
   if (!isARActive) {
@@ -227,6 +244,17 @@ export default function HomeScreen() {
         setSliderRaw={setSliderRaw}
         maxDistance={maxDistance}
       />
+      {/* Pause / Resume Button */}
+      <View style={styles.pauseBtnWrapper}>
+        <Pressable onPress={() => setPaused(!paused)} style={styles.pauseBtn}>
+          <MaterialCommunityIcons
+            name={paused ? "play" : "pause"}
+            size={28}
+            color={Colors.white}
+          />
+        </Pressable>
+      </View>
+
       {/* Filtre Modal */}
       <CategoryFilterModal
         visible={filterVisible}
@@ -246,11 +274,28 @@ const styles = StyleSheet.create({
   },
   safeAreaAR: {
     flex: 1,
-    backgroundColor: "black", // ✅ Kamera için daha mantıklı
+    backgroundColor: "black", 
     paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
   },
   homeImage: {
     width: "100%",
     height: "100%",
+  },
+  pauseBtnWrapper: {
+    position: "absolute", // 🔑 buton bağımsız dursun
+    right: 15, // slider hizasına gelsin
+    bottom: "28%", // slider’ın hemen altına otursun
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 30, // markerların üstünde kalsın
+  },
+  pauseBtn: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: Colors.accent,
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 5,
   },
 });

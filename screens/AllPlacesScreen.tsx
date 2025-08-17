@@ -4,7 +4,6 @@ import {
   View,
   Text,
   FlatList,
-  Image,
   Pressable,
   StyleSheet,
   Platform,
@@ -14,6 +13,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { getCurrentPositionAsync, Accuracy } from "expo-location";
+import { Image } from "expo-image";
 
 import type { Place, RootStackParamList } from "../types";
 import places from "../data/places.json";
@@ -30,7 +30,7 @@ export default function AllPlacesScreen() {
     longitude: number;
   } | null>(null);
 
-  // Kullanıcının konumunu al
+  // 📍 Kullanıcının konumunu al
   useEffect(() => {
     const getLocation = async () => {
       try {
@@ -45,7 +45,7 @@ export default function AllPlacesScreen() {
     getLocation();
   }, []);
 
-  // Mesafe hesaplanmış liste
+  // 📍 Mesafe hesaplanmış liste
   const dataWithDistance = (places as Place[])
     .map((p) => {
       const dist = coords ? distanceMeters(coords, p) : 0;
@@ -66,7 +66,7 @@ export default function AllPlacesScreen() {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <Pressable
-            style={styles.item}
+            style={styles.card}
             onPress={() =>
               navigation.navigate("PlaceDetail", {
                 place: item,
@@ -74,57 +74,90 @@ export default function AllPlacesScreen() {
               })
             }
           >
-            <Image
-              source={imageMap[item.image]}
-              style={styles.thumbnail}
-              resizeMode="cover"
-            />
-            <View style={styles.info}>
-              <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.category}>{item.category}</Text>
-              <Text style={styles.distance}>
-                {coords ? formatDistance(item.dist) : "Calculating..."}
-              </Text>
+            {/* Fotoğraf (güvenli fallback ile) */}
+            {imageMap[item.image as keyof typeof imageMap] ? (
+              <Image
+                source={imageMap[item.image as keyof typeof imageMap]}
+                style={styles.cardImage}
+                contentFit="cover" // ✅ yeni yöntem
+                transition={300} // ✅ fade-in animasyonu
+              />
+            ) : (
+              <View
+                style={[
+                  styles.cardImage,
+                  { justifyContent: "center", alignItems: "center" },
+                ]}
+              >
+                <Text style={{ color: Colors.textLight, fontSize: 12 }}>
+                  {"\u26A0"} No Image
+                </Text>
+              </View>
+            )}
+
+            {/* Bilgi kısmı */}
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}>{item.name}</Text>
+
+              <View style={styles.row}>
+                <Text style={styles.category}>{item.category}</Text>
+                <Text style={styles.distance}>
+                  {coords ? formatDistance(item.dist) : "Calculating..."}
+                </Text>
+              </View>
             </View>
           </Pressable>
         )}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
+        initialNumToRender={8} // ✅ performans
+        windowSize={10} // ✅ performans
+        removeClippedSubviews={true} // ✅ performans
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  item: {
-    flexDirection: "row",
-    padding: 10,
-    alignItems: "center",
-    paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
+  card: {
+    backgroundColor: Colors.white,
+    borderRadius: 16,
+    marginHorizontal: 12,
+    marginVertical: 8,
+    overflow: "hidden",
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 4,
   },
-  thumbnail: {
-    width: 70,
-    height: 70,
-    borderRadius: 8,
+  cardImage: {
+    width: "100%",
+    height: 160,
     backgroundColor: Colors.backgroundDark,
   },
-  info: {
-    marginLeft: 12,
-    flex: 1,
+  cardContent: {
+    padding: 12,
   },
-  name: {
+  cardTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: Colors.textMedium,
+    fontWeight: "700",
+    color: Colors.textDark,
+    marginBottom: 6,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   category: {
-    fontSize: 14,
-    color: Colors.textDark,
-    marginTop: 2,
+    fontSize: 13,
+    color: Colors.primaryDark,
+    fontWeight: "600",
   },
   distance: {
     fontSize: 13,
     color: Colors.accent,
-    marginTop: 4,
+    fontWeight: "600",
   },
   separator: {
     height: 1,

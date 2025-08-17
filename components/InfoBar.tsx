@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     right: 20,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: Colors.white,
     padding: 10,
     borderRadius: 12,
     elevation: 4,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     borderTopWidth: 1,
-    borderTopColor: Colors.backgroundDark,
+    borderTopColor: Colors.primaryDark,
   },
   bottomItem: {
     flex: 1,

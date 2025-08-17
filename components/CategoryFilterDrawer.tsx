@@ -23,6 +23,7 @@ type Props = {
 const categories = [
   { key: "all", label: "All", icon: "apps" },
   { key: "cafe", label: "Cafe", icon: "coffee" },
+  { key: "restaurant", label: "Restaurant", icon: "silverware-fork-knife" }, 
   { key: "mosque", label: "Mosque", icon: "mosque" },
   { key: "library", label: "Library", icon: "book" },
   { key: "bus_stop", label: "Bus Stop", icon: "bus" },
@@ -31,6 +32,8 @@ const categories = [
   { key: "post_office", label: "Post Office", icon: "email" },
   { key: "square", label: "Square", icon: "city" },
   { key: "institute", label: "Institute", icon: "domain" },
+  { key: "hospital", label: "Hospital", icon: "hospital-building" },
+  { key: "police", label: "Police", icon: "police-badge" }, 
 ];
 
 export default function CategoryFilterDrawer({
@@ -104,7 +107,7 @@ export default function CategoryFilterDrawer({
                       styles.iconWrapper,
                       isSelected
                         ? { backgroundColor: Colors.accent }
-                        : { backgroundColor: Colors.primaryLight },
+                        : { backgroundColor: Colors.primary },
                     ]}
                   >
                     <MaterialCommunityIcons

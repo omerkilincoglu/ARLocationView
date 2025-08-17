@@ -94,6 +94,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 8,
     borderLeftColor: "transparent",
     borderRightColor: "transparent",
-    borderTopColor: "rgba(11, 124, 153, 0.85)", // Marker ile aynı renk
+    borderTopColor: Colors.accent, // Marker ile aynı renk
   },
 });

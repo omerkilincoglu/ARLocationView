@@ -1,5 +1,4 @@
 // lib/geo.ts
-
 const R = 6371000; // Dünya'nın yarıçapı (metre)
 const toRad = (d: number) => (d * Math.PI) / 180;
 const toDeg = (r: number) => (r * 180) / Math.PI;
