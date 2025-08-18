@@ -11,6 +11,8 @@ import * as Font from "expo-font";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as SplashScreen from "expo-splash-screen";
 
+SplashScreen.preventAutoHideAsync(); // ✅ splash hemen kaybolmasın
+
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
@@ -22,13 +24,19 @@ export default function App() {
         console.warn(e);
       } finally {
         setFontsLoaded(true);
-        SplashScreen.hideAsync(); // ✅ fontlar yüklenince splash kapanır
       }
     }
     loadResources();
   }, []);
 
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync(); // ✅ fontlar yüklenince splash kapanır
+    }
+  }, [fontsLoaded]);
+
   if (!fontsLoaded) {
+    return null; // ✅ splash gösterilmeye devam etsin
   }
 
   return (
