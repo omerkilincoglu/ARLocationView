@@ -35,3 +35,7 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Ignore native projects (Expo Prebuild)
+android/
+ios/
