@@ -6,42 +6,41 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "cover",
+    "newArchEnabled": true
+  },
+  "ios": {
+    "supportsTablet": true,
+    "infoPlist": {
+      "NSCameraUsageDescription": "Yakındaki yerleri kamerada göstermek için kameraya ihtiyacımız var.",
+      "NSLocationWhenInUseUsageDescription": "Yakındaki yerleri mesafeye göre göstermek için konumunuza ihtiyacımız var."
+    }
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/icon.png",
       "backgroundColor": "#FFFFFF"
     },
-    "ios": {
-      "supportsTablet": true,
-      "infoPlist": {
-        "NSCameraUsageDescription": "Yakındaki yerleri kamerada göstermek için kameraya ihtiyacımız var.",
-        "NSLocationWhenInUseUsageDescription": "Yakındaki yerleri mesafeye göre göstermek için konumunuza ihtiyacımız var."
-      }
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "edgeToEdgeEnabled": true,
-      "permissions": [
-        "CAMERA",
-        "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
-      ],
-      "package": "com.engomer.ARLocationView"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-font"
+    "edgeToEdgeEnabled": true,
+    "permissions": [
+      "CAMERA",
+      "ACCESS_FINE_LOCATION",
+      "ACCESS_COARSE_LOCATION"
     ],
-    "extra": {
-      "eas": {
-        "projectId": "8f39bfea-17fe-4ee6-8700-5e850478cb28"
-      }
+    "package": "com.engomer.ARLocationView"
+  },
+  "androidStatusBar": {
+    "barStyle": "light-content",
+    "backgroundColor": "#113295"
+  },
+  "web": {
+    "favicon": "./assets/favicon.png"
+  },
+  "plugins": [
+    "expo-font"
+  ],
+  "extra": {
+    "eas": {
+      "projectId": "8f39bfea-17fe-4ee6-8700-5e850478cb28"
     }
   }
 }

@@ -11,7 +11,8 @@ import * as Font from "expo-font";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as SplashScreen from "expo-splash-screen";
 
-SplashScreen.preventAutoHideAsync(); // ✅ splash hemen kaybolmasın
+// Expo’nun default splash’ını OTOMATİK kapatma → iptal ettik
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -24,28 +25,25 @@ export default function App() {
         console.warn(e);
       } finally {
         setFontsLoaded(true);
+        // ✅ hazır olduğunda splash tamamen kapanır → senin SplashScreen.tsx açılır
+        SplashScreen.hideAsync();
       }
     }
     loadResources();
   }, []);
 
-  useEffect(() => {
-    if (fontsLoaded) {
-      SplashScreen.hideAsync(); // ✅ fontlar yüklenince splash kapanır
-    }
-  }, [fontsLoaded]);
-
   if (!fontsLoaded) {
-    return null; // ✅ splash gösterilmeye devam etsin
+    return null; // fontlar yüklenene kadar splash devam eder
   }
 
   return (
     <SafeAreaProvider style={{ flex: 1 }}>
       <NavigationContainer>
+        {/* ✅ StatusBar sabit */}
         <StatusBar
           translucent
           backgroundColor={Colors.primaryDark}
-          barStyle="light-content" // ✅ koyu mavi üstünde beyaz ikon
+          barStyle="light-content"
         />
         <MainNavigator />
       </NavigationContainer>
