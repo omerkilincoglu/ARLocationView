@@ -6,7 +6,20 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8f39bfea-17fe-4ee6-8700-5e850478cb28"
+      }
+    },
+    "android": {
+      "package": "com.engomer.arlocationview"
+    }
   },
   "ios": {
     "supportsTablet": true,
@@ -17,8 +30,8 @@
   },
   "android": {
     "adaptiveIcon": {
-      "foregroundImage": "./assets/icon.png",
-      "backgroundColor": "#FFFFFF"
+      "foregroundImage": "./assets/adaptive-icon.png",
+      "backgroundColor": "#ffffff"
     },
     "edgeToEdgeEnabled": true,
     "permissions": [
