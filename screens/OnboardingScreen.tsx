@@ -1,11 +1,11 @@
-// OnboardingScreen.tsx
+// screens/OnboardingScreen.tsx
 import React from "react";
 import {
   View,
   Text,
   StyleSheet,
   Image,
-  Pressable,
+  TouchableOpacity ,
   Platform,
   StatusBar as RNStatusBar,
 } from "react-native";
@@ -38,12 +38,13 @@ export default function OnboardingScreen() {
           Open your camera and discover the world around you through AR. Find
           restaurants, parks, and more as they appear live on your screen
         </Text>
-        <Pressable
+        <TouchableOpacity  
           style={styles.button}
           onPress={() => navigation.navigate("Home", { ar: false })}
+          activeOpacity={0.7}   // basınca opaklık hissi
         >
           <Text style={styles.buttonText}>Get Started</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );

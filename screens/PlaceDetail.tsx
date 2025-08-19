@@ -5,7 +5,7 @@ import {
   Text,
   StyleSheet,
   Image,
-  Pressable,
+  TouchableOpacity,
   Linking,
   ScrollView,
   Platform,
@@ -158,13 +158,13 @@ export default function PlaceDetail() {
             </Text>
           </View>
 
-          {/* Ayrıntı linki */}
-          <Pressable
-            onPress={handleOpenMaps}
+          {/* Ayrıntı bilgisi (buton değil, sadece text + ikon) */}
+          <View
             style={{
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
+              marginTop: 8,
             }}
           >
             <Text style={styles.linkText}>
@@ -176,12 +176,16 @@ export default function PlaceDetail() {
               color={Colors.accent}
               style={{ marginLeft: 6 }}
             />
-          </Pressable>
+          </View>
 
           {/* Yön tarifi butonu */}
-          <Pressable style={styles.button} onPress={handleGetDirections}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleGetDirections}
+            activeOpacity={0.7}
+          >
             <Text style={styles.buttonText}>Get Directions</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>

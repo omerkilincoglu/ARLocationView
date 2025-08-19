@@ -5,6 +5,7 @@ import {
   Text,
   FlatList,
   Pressable,
+  TouchableOpacity,
   StyleSheet,
   TextInput,
   Platform,
@@ -21,7 +22,7 @@ import places from "../data/places.json";
 import imageMap from "../constants/imageMap";
 import { Colors } from "../constants/colors";
 import { distanceMeters, formatDistance } from "../lib/geo";
-import CategoryFilterDrawer from "../components/CategoryFilterDrawer";
+import CategoryFilter from "../components/CategoryFilter";
 
 export default function AllPlacesScreen() {
   const navigation =
@@ -32,7 +33,7 @@ export default function AllPlacesScreen() {
     longitude: number;
   } | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [activeFilter, setActiveFilter] = useState<string[]>([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   // 📍 Kullanıcının konumunu al
@@ -63,7 +64,8 @@ export default function AllPlacesScreen() {
     const matchesSearch = item.name
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
-    const matchesFilter = activeFilter ? item.category === activeFilter : true;
+    const matchesFilter =
+      activeFilter.length > 0 ? activeFilter.includes(item.category) : true;
     return matchesSearch && matchesFilter;
   });
 
@@ -81,7 +83,7 @@ export default function AllPlacesScreen() {
           <MaterialCommunityIcons
             name="magnify"
             size={20}
-            color={Colors.textLight}
+            color={Colors.primaryDark}
           />
           <TextInput
             style={styles.searchInput}
@@ -92,29 +94,40 @@ export default function AllPlacesScreen() {
           />
         </View>
 
-        <Pressable
+        <TouchableOpacity
           style={styles.filterBtn}
           onPress={() => setIsFilterOpen(true)}
+          activeOpacity={0.7}
         >
           <MaterialCommunityIcons
             name="tune-variant"
             size={22}
             color={Colors.primaryDark}
           />
-        </Pressable>
+        </TouchableOpacity>
       </View>
 
       {/* 🏷️ Aktif filtre chip */}
-      {activeFilter && (
-        <View style={styles.chip}>
-          <Text style={styles.chipText}>{activeFilter}</Text>
-          <Pressable onPress={() => setActiveFilter(null)}>
-            <MaterialCommunityIcons
-              name="close-circle"
-              size={16}
-              color={Colors.primaryDark}
-            />
-          </Pressable>
+      {activeFilter.length > 0 && (
+        <View style={styles.chipRow}>
+          {activeFilter.map((cat) => (
+            <View key={cat} style={styles.chip}>
+              <Text style={styles.chipText}>{cat}</Text>
+              <TouchableOpacity
+                onPress={() =>
+                  setActiveFilter(activeFilter.filter((c) => c !== cat))
+                }
+                style={styles.closeBtn}
+                activeOpacity={0.6}
+              >
+                <MaterialCommunityIcons
+                  name="close-circle"
+                  size={16}
+                  color={"#e5e7eb"} // soft gri
+                />
+              </TouchableOpacity>
+            </View>
+          ))}
         </View>
       )}
 
@@ -169,15 +182,17 @@ export default function AllPlacesScreen() {
         initialNumToRender={8}
         windowSize={10}
         removeClippedSubviews={true}
+        contentContainerStyle={{ paddingBottom: 100 }}
       />
 
       {/* 🎛️ Filtre Drawer */}
-      <CategoryFilterDrawer
+      <CategoryFilter
+        mode="list"
         visible={isFilterOpen}
         onClose={() => setIsFilterOpen(false)}
-        selectedCategories={activeFilter ? [activeFilter] : []}
-        onSelect={(cats) => {
-          setActiveFilter(cats[0] || null); // tek seçim
+        selectedCategories={activeFilter}
+        onSelect={(cats: string[]) => {
+          setActiveFilter(cats);
           setIsFilterOpen(false);
         }}
       />
@@ -220,21 +235,32 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#e2e8f0",
   },
+  chipRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginHorizontal: 12,
+    marginBottom: 6,
+  },
   chip: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "rgba(11,124,153,0.08)",
-    marginHorizontal: 12,
+    backgroundColor: "rgba(17, 50, 149, 0.9)", // primaryDark transparan
+    marginRight: 6,
     marginBottom: 6,
     paddingHorizontal: 10,
-    paddingVertical: 6,
-    borderRadius: 20,
+    paddingVertical: 5,
+    borderRadius: 30,
   },
   chipText: {
-    fontSize: 12,
-    color: Colors.primaryDark,
-    marginRight: 6,
+    fontSize: 13,
+    color: Colors.white,
+    marginRight: 4,
     fontWeight: "600",
+  },
+  closeBtn: {
+    padding: 2,
+    justifyContent: "center",
+    alignItems: "center",
   },
   card: {
     backgroundColor: Colors.white,

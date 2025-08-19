@@ -1,6 +1,6 @@
 // components/InfoBar.tsx
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 
@@ -38,9 +38,10 @@ export default function InfoBar({
   if (mode === "bottom") {
     return (
       <View style={styles.bottomBar}>
-        <Pressable
+        <TouchableOpacity
           style={styles.bottomItem}
           onPress={() => navigation.navigate("Home", { ar: false })}
+          activeOpacity={0.7}
         >
           <View
             style={[
@@ -62,11 +63,12 @@ export default function InfoBar({
           </View>
 
           <Text style={styles.bottomLabel}>Home</Text>
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable
+        <TouchableOpacity
           style={styles.bottomItem}
           onPress={() => navigation.push("Home", { ar: true })}
+          activeOpacity={0.7} // basınca opaklık hissi
         >
           <View
             style={[
@@ -88,11 +90,12 @@ export default function InfoBar({
           </View>
 
           <Text style={styles.bottomLabel}>AR</Text>
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable
+        <TouchableOpacity
           style={styles.bottomItem}
           onPress={() => navigation.navigate("AllPlaces")}
+          activeOpacity={0.7} // basınca opaklık hissi
         >
           <View
             style={[
@@ -112,7 +115,7 @@ export default function InfoBar({
           </View>
 
           <Text style={styles.bottomLabel}>All Places</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -120,13 +123,17 @@ export default function InfoBar({
   if (mode === "filter") {
     return (
       <View style={styles.filterBar}>
-        <Pressable style={styles.filterBtn} onPress={onPress}>
+        <TouchableOpacity
+          style={styles.filterBtn}
+          onPress={onPress}
+          activeOpacity={0.7}
+        >
           <MaterialCommunityIcons
             name="tune-variant"
             size={22}
             color={Colors.primaryDark}
           />
-        </Pressable>
+        </TouchableOpacity>
       </View>
     );
   }

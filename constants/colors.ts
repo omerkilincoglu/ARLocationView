@@ -1,3 +1,4 @@
+// constants/colors.ts
 export const Colors = {
   // Ana renkler
   primary: "#7FD9F5", // Ana açık mavi (arka plan)

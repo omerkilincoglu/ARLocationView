@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
-  Pressable,
+  TouchableOpacity,
   StyleSheet,
   Dimensions,
   Image,
@@ -29,8 +29,7 @@ import DistanceSlider from "../components/DistanceSlider";
 import imageMap from "../constants/imageMap";
 import InfoBar from "../components/InfoBar"; // ✅ doğru import
 import { Colors } from "../constants/colors";
-import CategoryFilterModal from "../components/CategoryFilterDrawer";
-
+import CategoryFilter from "../components/CategoryFilter";
 const { width: SCREEN_W } = Dimensions.get("window");
 const MAX_DISTANCE_DEFAULT = 100000; // 100 km
 const FOV = 60;
@@ -51,7 +50,7 @@ export default function HomeScreen() {
   const [coords, setCoords] = useState<Coords | null>(null);
   const [heading, setHeading] = useState<number | null>(null);
 
-  const [sliderRaw, setSliderRaw] = useState(0.2);
+  const [sliderRaw, setSliderRaw] = useState(0);
   const maxDistance = 300 + sliderRaw * (MAX_DISTANCE_DEFAULT - 300);
 
   const [paused, setPaused] = useState(false);
@@ -60,7 +59,7 @@ export default function HomeScreen() {
   );
 
   const lastHeadingRef = useRef(0);
-  const smoothAngle = (prev: number, next: number, alpha = 0.1) => {
+  const smoothAngle = (prev: number, next: number, alpha = 0.15) => {
     const diff = ((next - prev + 540) % 360) - 180;
     return (prev + alpha * diff + 360) % 360;
   };
@@ -260,20 +259,25 @@ export default function HomeScreen() {
       />
       {/* Pause / Resume Button */}
       <View style={styles.pauseBtnWrapper}>
-        <Pressable onPress={() => setPaused(!paused)} style={styles.pauseBtn}>
+        <TouchableOpacity
+          onPress={() => setPaused(!paused)}
+          style={styles.pauseBtn}
+          activeOpacity={0.7}
+        >
           <MaterialCommunityIcons
             name={paused ? "play" : "pause"}
             size={28}
             color={Colors.white}
           />
-        </Pressable>
+        </TouchableOpacity>
       </View>
 
       {/* Filtre Modal */}
-      <CategoryFilterModal
+      <CategoryFilter
+        mode="ar"
         visible={filterVisible}
         onClose={() => setFilterVisible(false)}
-        onSelect={setSelectedCategories}
+        onSelect={(cats: string[]) => setSelectedCategories(cats)} // çoklu seçim
         selectedCategories={selectedCategories}
       />
     </View>
@@ -298,7 +302,7 @@ const styles = StyleSheet.create({
   pauseBtnWrapper: {
     position: "absolute", // 🔑 buton bağımsız dursun
     right: 15, // slider hizasına gelsin
-    bottom: "28%", // slider’ın hemen altına otursun
+    bottom: "23%", // slider’ın hemen altına otursun
     alignItems: "center",
     justifyContent: "center",
     zIndex: 30, // markerların üstünde kalsın

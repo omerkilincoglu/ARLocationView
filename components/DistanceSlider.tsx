@@ -1,5 +1,5 @@
 // components/DistanceSlider.tsx
-import React from "react";
+import React, { useRef } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Slider from "@react-native-community/slider";
 import { formatDistance } from "../lib/geo";
@@ -16,8 +16,17 @@ export default function DistanceSlider({
   setSliderRaw,
   maxDistance,
 }: DistanceSliderProps) {
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   // Track genişliği slider konumuna göre değişir
   const trackWidth = 44 + sliderRaw * 10; // min 44px, max ~54px
+
+  const handleSliderChange = (val: number) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setSliderRaw(val);
+    }, 50); // ✅ 50ms debounce → akıcı güncelleme
+  };
 
   return (
     <View style={styles.sliderContainer}>
@@ -31,7 +40,7 @@ export default function DistanceSlider({
           maximumValue={1}
           step={0.01}
           value={sliderRaw}
-          onValueChange={setSliderRaw}
+          onValueChange={handleSliderChange} // ✅ debounce edilmiş handler
           minimumTrackTintColor={Colors.accent}
           maximumTrackTintColor="rgba(255, 255, 255, 0.3)"
           thumbTintColor={Colors.accent}
@@ -54,7 +63,7 @@ const styles = StyleSheet.create({
   },
   sliderTrack: {
     backgroundColor: Colors.primaryDark,
-    height: "35%",
+    height: "50%",
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
@@ -68,7 +77,7 @@ const styles = StyleSheet.create({
   },
   sliderLabel: {
     position: "absolute",
-    top: 180,
+    top: "18%",
     alignSelf: "center",
   },
   distanceText: {
@@ -76,11 +85,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 14,
     backgroundColor: Colors.primaryDark,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
     borderRadius: 20,
     overflow: "hidden",
     borderWidth: 1.5,
     borderColor: "rgba(255,255,255,0.8)",
+
+    width: 77, // ✅ sabit genişlik
+    height: 30, // ✅ sabit yükseklik
+    textAlign: "center", // ✅ yatay ortalama
+    textAlignVertical: "center", // ✅ dikey ortalama (Android)
+    lineHeight: 28, // ✅ yazıyı dikey ortada tut
   },
 });
