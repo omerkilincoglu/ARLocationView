@@ -1,8 +1,9 @@
 // components/CategoryFilterDrawer.tsx
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
+  TextInput,
   Modal,
   Pressable,
   TouchableWithoutFeedback,
@@ -20,20 +21,41 @@ type Props = {
   selectedCategories: string[];
 };
 
-const categories = [
+// Tüm kategori listesi
+export const categories = [
   { key: "all", label: "All", icon: "apps" },
+
+  // 🍴 Yeme & İçme
   { key: "cafe", label: "Cafe", icon: "coffee" },
-  { key: "restaurant", label: "Restaurant", icon: "silverware-fork-knife" }, 
+  { key: "restaurant", label: "Restaurant", icon: "silverware-fork-knife" },
+
+  // 🏠 Konaklama
+  { key: "dormitory", label: "Dormitory", icon: "home-group" },
+
+  // 🕌 Kültürel & Dini
   { key: "mosque", label: "Mosque", icon: "mosque" },
   { key: "library", label: "Library", icon: "book" },
+
+  // 🚏 Ulaşım
   { key: "bus_stop", label: "Bus Stop", icon: "bus" },
-  { key: "faculty", label: "Faculty", icon: "school" },
+  { key: "terminal", label: "Terminal", icon: "bus-multiple" },
+
+  // 🏫 Eğitim & Yönetim
+  { key: "school", label: "School", icon: "school-outline" }, // 🆕 Okul (lise/ilkokul)
+  { key: "university", label: "University", icon: "school" }, // Üniversite
+  { key: "faculty", label: "Faculty", icon: "domain" }, // Fakülte
   { key: "administration", label: "Administration", icon: "office-building" },
-  { key: "post_office", label: "Post Office", icon: "email" },
-  { key: "square", label: "Square", icon: "city" },
   { key: "institute", label: "Institute", icon: "domain" },
+
+  // 🏥 Sağlık & Güvenlik
   { key: "hospital", label: "Hospital", icon: "hospital-building" },
-  { key: "police", label: "Police", icon: "police-badge" }, 
+  { key: "health_center", label: "Health Center", icon: "medical-bag" },
+  { key: "pharmacy", label: "Pharmacy", icon: "pill" },
+  { key: "police", label: "Police", icon: "police-badge" },
+
+  // 🏙️ Şehir Alanları
+  { key: "square", label: "Square", icon: "city" },
+  { key: "post_office", label: "Post Office", icon: "email" },
 ];
 
 export default function CategoryFilterDrawer({
@@ -42,6 +64,8 @@ export default function CategoryFilterDrawer({
   onSelect,
   selectedCategories,
 }: Props) {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const slideAnim = useRef(new Animated.Value(-400)).current;
 
   useEffect(() => {
@@ -88,8 +112,27 @@ export default function CategoryFilterDrawer({
             </Pressable>
           </View>
 
+          {/* 🔍 Search Box */}
+          <View style={styles.searchWrapper}>
+            <MaterialCommunityIcons
+              name="magnify"
+              size={20}
+              color={Colors.primaryDark}
+              style={{ marginRight: 8 }}
+            />
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Search categories..."
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+            />
+          </View>
+
+          {/* Kategoriler Listesi */}
           <FlatList
-            data={categories}
+            data={categories.filter((c) =>
+              c.label.toLowerCase().includes(searchQuery.toLowerCase())
+            )}
             keyExtractor={(item) => item.key}
             numColumns={3} // 👈 3’lü grid
             renderItem={({ item }) => {
@@ -157,12 +200,30 @@ const styles = StyleSheet.create({
     padding: 16,
     elevation: 8,
   },
+  searchWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f1f5f9", // açık gri arka plan
+    marginHorizontal: 16,
+    marginBottom: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+
+  searchInput: {
+    flex: 1,
+    fontSize: 14,
+    color: Colors.textDark,
+  },
+
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 12,
   },
+
   title: {
     fontSize: 18,
     fontWeight: "700",

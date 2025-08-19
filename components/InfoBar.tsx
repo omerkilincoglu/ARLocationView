@@ -2,6 +2,8 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useRoute } from "@react-navigation/native";
+
 import { Colors } from "../constants/colors";
 
 type InfoBarProps = {
@@ -17,6 +19,9 @@ export default function InfoBar({
   navigation,
   onPress,
 }: InfoBarProps) {
+  const route = useRoute();
+  const params: any = route.params ?? {}; // ar parametresini güvenli alabilmek için
+
   if (mode === "top") {
     return (
       <View style={styles.topBar}>
@@ -37,13 +42,25 @@ export default function InfoBar({
           style={styles.bottomItem}
           onPress={() => navigation.navigate("Home", { ar: false })}
         >
-          <View style={styles.iconWrapper}>
+          <View
+            style={[
+              styles.iconWrapper,
+              route.name === "Home" && !params.ar
+                ? { backgroundColor: Colors.primaryDark }
+                : {},
+            ]}
+          >
             <MaterialCommunityIcons
               name="home"
               size={24}
-              color={Colors.primaryDark}
+              color={
+                route.name === "Home" && !params.ar
+                  ? Colors.white
+                  : Colors.primaryDark
+              }
             />
           </View>
+
           <Text style={styles.bottomLabel}>Home</Text>
         </Pressable>
 
@@ -51,13 +68,25 @@ export default function InfoBar({
           style={styles.bottomItem}
           onPress={() => navigation.push("Home", { ar: true })}
         >
-          <View style={styles.iconWrapper}>
+          <View
+            style={[
+              styles.iconWrapper,
+              route.name === "Home" && params.ar
+                ? { backgroundColor: Colors.primaryDark }
+                : {},
+            ]}
+          >
             <MaterialCommunityIcons
               name="camera"
               size={24}
-              color={Colors.primaryDark}
+              color={
+                route.name === "Home" && params.ar
+                  ? Colors.white
+                  : Colors.primaryDark
+              }
             />
           </View>
+
           <Text style={styles.bottomLabel}>AR</Text>
         </Pressable>
 
@@ -65,13 +94,23 @@ export default function InfoBar({
           style={styles.bottomItem}
           onPress={() => navigation.navigate("AllPlaces")}
         >
-          <View style={styles.iconWrapper}>
+          <View
+            style={[
+              styles.iconWrapper,
+              route.name === "AllPlaces"
+                ? { backgroundColor: Colors.primaryDark }
+                : {},
+            ]}
+          >
             <MaterialCommunityIcons
               name="format-list-bulleted"
               size={24}
-              color={Colors.primaryDark}
+              color={
+                route.name === "AllPlaces" ? Colors.white : Colors.primaryDark
+              }
             />
           </View>
+
           <Text style={styles.bottomLabel}>All Places</Text>
         </Pressable>
       </View>

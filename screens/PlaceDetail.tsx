@@ -24,22 +24,43 @@ type Params = {
 };
 
 // kategori ikonları eşleşmesi
-const categoryIcons: Record<
+export const categoryIcons: Record<
   string,
   keyof typeof MaterialCommunityIcons.glyphMap
 > = {
-  mosque: "mosque",
+  all: "apps",
+
+  // 🍴 Yeme & İçme
   cafe: "coffee",
   restaurant: "silverware-fork-knife",
+
+  // 🏠 Konaklama
+  dormitory: "home-group",
+
+  // 🕌 Kültürel & Dini
+  mosque: "mosque",
   library: "book",
+
+  // 🚏 Ulaşım
   bus_stop: "bus",
-  faculty: "school",
+  terminal: "bus-multiple",
+
+  // 🏫 Eğitim & Yönetim
+  school: "school-outline", // 🆕 Okul
+  university: "school", // Üniversite
+  faculty: "domain", // Fakülte
   administration: "office-building",
-  post_office: "email",
-  square: "city",
   institute: "domain",
+
+  // 🏥 Sağlık & Güvenlik
   hospital: "hospital-building",
+  health_center: "medical-bag",
+  pharmacy: "pill",
   police: "police-badge",
+
+  // 🏙️ Şehir Alanları
+  square: "city",
+  post_office: "email",
 };
 
 export default function PlaceDetail() {

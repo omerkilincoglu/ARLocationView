@@ -9,51 +9,42 @@
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFFFFF"
     },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "We need access to your camera to display nearby places in augmented reality.",
+        "NSLocationWhenInUseUsageDescription": "We need access to your location to show places around you based on distance."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ],
+      "package": "com.engomer.ARLocationView"
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#113295"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font"
+    ],
     "extra": {
       "eas": {
         "projectId": "8f39bfea-17fe-4ee6-8700-5e850478cb28"
       }
-    },
-    "android": {
-      "package": "com.engomer.arlocationview"
-    }
-  },
-  "ios": {
-    "supportsTablet": true,
-    "infoPlist": {
-      "NSCameraUsageDescription": "Yakındaki yerleri kamerada göstermek için kameraya ihtiyacımız var.",
-      "NSLocationWhenInUseUsageDescription": "Yakındaki yerleri mesafeye göre göstermek için konumunuza ihtiyacımız var."
-    }
-  },
-  "android": {
-    "adaptiveIcon": {
-      "foregroundImage": "./assets/adaptive-icon.png",
-      "backgroundColor": "#ffffff"
-    },
-    "edgeToEdgeEnabled": true,
-    "permissions": [
-      "CAMERA",
-      "ACCESS_FINE_LOCATION",
-      "ACCESS_COARSE_LOCATION"
-    ],
-    "package": "com.engomer.ARLocationView"
-  },
-  "androidStatusBar": {
-    "barStyle": "light-content",
-    "backgroundColor": "#113295"
-  },
-  "web": {
-    "favicon": "./assets/favicon.png"
-  },
-  "plugins": [
-    "expo-font"
-  ],
-  "extra": {
-    "eas": {
-      "projectId": "8f39bfea-17fe-4ee6-8700-5e850478cb28"
     }
   }
 }

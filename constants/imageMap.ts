@@ -20,6 +20,13 @@ const imageMap: Record<string, any> = {
   "tunatan.jpg": require("../assets/images/tunatan.jpg"),
   "campus_mosque.jpg": require("../assets/images/campus_mosque.jpg"),
   "yht_arifiye.jpg": require("../assets/images/yht_arifiye.jpg"),
+  "technopark.jpg": require("../assets/images/technopark.jpg"),
+  "yenikoy_health.jpg": require("../assets/images/yenikoy_health.jpg"),
+  "tekom.jpg": require("../assets/images/tekom.jpg"),
+  "izmit_terminal.jpg": require("../assets/images/izmit_terminal.jpg"),
+  "izmit_bazaar.jpg": require("../assets/images/izmit_bazaar.jpg"),
+  "kocaeli_university.jpg": require("../assets/images/kocaeli_university.jpg"),
+  "yazlik_ilicasi.jpg": require("../assets/images/yazlik_ilicasi.jpg"),
 };
 
 export default imageMap;

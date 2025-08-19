@@ -14,9 +14,11 @@ export type PlaceCategory =
   | "faculty"
   | "administration"
   | "institute"
-  | "restaurant"   
-  | "hospital"     
-  | "police";      
+  | "restaurant"
+  | "hospital"
+  | "police"
+  | "institute"
+  | "health_center";
 
 // Tek bir mekanın yapısını tanımlayan tip
 export type Place = {

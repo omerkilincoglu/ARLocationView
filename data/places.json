@@ -70,7 +70,7 @@
         "name": "Unigarden",
         "latitude": 40.7452962,
         "longitude": 30.3293117,
-        "category": "cafe",
+        "category": "dormitory",
         "description": "A cozy cafe and event space located in the Sakarya University campus.",
         "image": "unigarden.jpg",
         "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7452962,30.3293117",
@@ -218,5 +218,82 @@
         "image": "yht_arifiye.jpg",
         "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7134365,30.3556445",
         "address": "Arifiye / Sakarya / Turkey"
+    },
+    {
+        "id": "21",
+        "name": "Kocaeli University Technopark",
+        "latitude": 40.7038961,
+        "longitude": 29.8842621,
+        "category": "institute",
+        "description": "Technopark of Kocaeli University, innovation and research hub.",
+        "image": "technopark.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7038961,29.8842621",
+        "address": "İzmit / Kocaeli / Turkey"
+    },
+    {
+        "id": "22",
+        "name": "Yeniköy Family Health Center",
+        "latitude": 40.7051265,
+        "longitude": 29.8848602,
+        "category": "health_center",
+        "description": "Yeniköy family health center, providing primary health care.",
+        "image": "yenikoy_health.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7051265,29.8848602",
+        "address": "İzmit / Kocaeli / Turkey"
+    },
+    {
+        "id": "23",
+        "name": "Tekom Defense and Aviation Industry",
+        "latitude": 40.7050236,
+        "longitude": 29.8818892,
+        "category": "institute",
+        "description": "Defense and aviation factory in Yeniköy.",
+        "image": "tekom.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7050236,29.8818892",
+        "address": "İzmit / Kocaeli / Turkey"
+    },
+    {
+        "id": "24",
+        "name": "Izmit Intercity Bus Terminal",
+        "latitude": 40.7761011,
+        "longitude": 29.9742543,
+        "category": "bus_stop",
+        "description": "Izmit intercity bus station.",
+        "image": "izmit_terminal.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7761011,29.9742543",
+        "address": "İzmit / Kocaeli / Turkey"
+    },
+    {
+        "id": "25",
+        "name": "Izmit Bazaar",
+        "latitude": 40.7648858,
+        "longitude": 29.9299231,
+        "category": "square",
+        "description": "The historical bazaar of Izmit.",
+        "image": "izmit_bazaar.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7648858,29.9299231",
+        "address": "İzmit / Kocaeli / Turkey"
+    },
+    {
+        "id": "26",
+        "name": "Kocaeli University",
+        "latitude": 40.8221732,
+        "longitude": 29.9216517,
+        "category": "faculty",
+        "description": "Main campus of Kocaeli University.",
+        "image": "kocaeli_university.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.8221732,29.9216517",
+        "address": "İzmit / Kocaeli / Turkey"
+    },
+    {
+        "id": "27",
+        "name": "Yazlık Ilıcası - Gölcük",
+        "latitude": 40.6979725,
+        "longitude": 29.877734,
+        "category": "park",
+        "description": "Thermal springs located in Gölcük district, known as Yazlık Ilıcası.",
+        "image": "yazlik_ilicasi.jpg",
+        "maps_link": "https://www.google.com/maps/search/?api=1&query=40.6979725,29.877734",
+        "address": "Gölcük / Kocaeli / Turkey"
     }
 ]

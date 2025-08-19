@@ -32,7 +32,7 @@ import { Colors } from "../constants/colors";
 import CategoryFilterModal from "../components/CategoryFilterDrawer";
 
 const { width: SCREEN_W } = Dimensions.get("window");
-const MAX_DISTANCE_DEFAULT = 30000;
+const MAX_DISTANCE_DEFAULT = 100000; // 100 km
 const FOV = 60;
 
 type Coords = { latitude: number; longitude: number };
@@ -60,7 +60,7 @@ export default function HomeScreen() {
   );
 
   const lastHeadingRef = useRef(0);
-  const smoothAngle = (prev: number, next: number, alpha = 0.3) => {
+  const smoothAngle = (prev: number, next: number, alpha = 0.1) => {
     const diff = ((next - prev + 540) % 360) - 180;
     return (prev + alpha * diff + 360) % 360;
   };
@@ -122,14 +122,23 @@ export default function HomeScreen() {
       locSub = await Location.watchPositionAsync(
         {
           accuracy: Location.Accuracy.BestForNavigation,
-          timeInterval: 800,
-          distanceInterval: 3,
+          timeInterval: 1500,
+          distanceInterval: 5,
         },
-        (loc) => setCoords(loc.coords)
+        (loc) => {
+          const last = coords;
+          if (last) {
+            const d = distanceMeters(last, loc.coords);
+            if (d < 2) return; // 🔑 2 metreden küçük hareketi yok say
+          }
+          setCoords(loc.coords);
+        }
       );
 
       headSub = await Location.watchHeadingAsync((h) => {
         if (h.trueHeading && h.trueHeading > 0) {
+          const diff = Math.abs(h.trueHeading - lastHeadingRef.current);
+          if (diff < 2) return; // 🔑 küçük dalgalanmaları yok say (2° altında)
           const blended = smoothAngle(lastHeadingRef.current, h.trueHeading);
           lastHeadingRef.current = blended;
           setHeading(blended);
@@ -200,22 +209,27 @@ export default function HomeScreen() {
 
       {/* Markerlar */}
       <View style={StyleSheet.absoluteFillObject} pointerEvents="box-none">
-        {filteredMarkers.map((m) => {
+        {filteredMarkers.map((m, index) => {
           const angle = m.rel;
           const xBase = SCREEN_W / 2 + (angle / (FOV / 2)) * (SCREEN_W / 2);
           const isVisible = Math.abs(angle) <= FOV / 2;
           if (isVisible) {
             let y = 120 + Math.min(320, Math.max(0, m.dist / 18));
             const t = clamp((m.dist - 300) / (maxDistance - 300), 0, 1);
-            const scale = clamp(1.3 - 0.5 * t, 0.8, 1.2);
-            const opacity = clamp(1.5 - 0.5 * t, 0.5, 1);
+            const scale = clamp(1.1 - 0.3 * t, 0.9, 1.1);
+            const opacity = clamp(1.2 - 0.3 * t, 0.6, 1);
+
+            // 🔹 Markerları biraz dağıtmak için offset ekledik
+            const offsetX = ((index % 3) - 1) * 80; // -80, 0, +80 px
+            const offsetY = ((index % 2) - 0.5) * 60; // -30, +30 px
+
             return (
               <View
                 key={m.place.id}
                 style={{
                   position: "absolute",
-                  left: xBase,
-                  top: y,
+                  left: xBase + offsetX,
+                  top: y + offsetY,
                   transform: [{ translateX: -90 }, { scale }],
                   opacity,
                 }}
@@ -274,7 +288,7 @@ const styles = StyleSheet.create({
   },
   safeAreaAR: {
     flex: 1,
-    backgroundColor: "black", 
+    backgroundColor: "black",
     paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
   },
   homeImage: {
