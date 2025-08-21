@@ -9,10 +9,10 @@
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
       "backgroundColor": "#FFFFFF"
     },
     "ios": {
-      "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "We need access to your camera to display nearby places in augmented reality.",
         "NSLocationWhenInUseUsageDescription": "We need access to your location to show places around you based on distance."
@@ -20,16 +20,16 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFFFFF",
+        "resizeMode": "contain"
       },
-      "edgeToEdgeEnabled": true,
       "permissions": [
         "CAMERA",
         "ACCESS_FINE_LOCATION",
         "ACCESS_COARSE_LOCATION"
       ],
-      "package": "com.engomer.ARLocationView"
+      "package": "com.engomer.arlocationview"
     },
     "androidStatusBar": {
       "barStyle": "light-content",

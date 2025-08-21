@@ -7,9 +7,8 @@ import {
   StyleSheet,
   Dimensions,
   Image,
-  Platform,
-  StatusBar as RNStatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -26,7 +25,6 @@ import {
 } from "../lib/geo";
 import MarkerOverlay from "../components/MarkerOverlay";
 import DistanceSlider from "../components/DistanceSlider";
-import imageMap from "../constants/imageMap";
 import InfoBar from "../components/InfoBar"; // ✅ doğru import
 import { Colors } from "../constants/colors";
 import CategoryFilter from "../components/CategoryFilter";
@@ -186,7 +184,7 @@ export default function HomeScreen() {
   /** 📌 Normal Mod **/
   if (!isARActive) {
     return (
-      <View style={styles.safeArea}>
+      <SafeAreaView style={{ flex: 1 }} edges={["top", "bottom"]}>
         <Image
           source={require("../assets/home.png")}
           style={styles.homeImage}
@@ -195,14 +193,15 @@ export default function HomeScreen() {
 
         <InfoBar mode="top" currentAddress={currentAddress} />
         <InfoBar mode="bottom" navigation={navigation} />
-      </View>
+      </SafeAreaView>
     );
   }
 
   /** 📌 AR Mod **/
   return (
-    <View style={styles.safeAreaAR}>
+    <SafeAreaView style={styles.safeAreaAR} edges={["top", "bottom"]}>
       <CameraView style={StyleSheet.absoluteFillObject} facing="back" />
+      {/* iPhone X alt çentik için ✅ */}
       <InfoBar mode="filter" onPress={() => setFilterVisible(true)} />
       <InfoBar mode="bottom" navigation={navigation} />
 
@@ -242,7 +241,6 @@ export default function HomeScreen() {
                       dist: m.dist,
                     })
                   }
-                  imageMap={imageMap}
                 />
               </View>
             );
@@ -250,7 +248,6 @@ export default function HomeScreen() {
           return null;
         })}
       </View>
-
       {/* Mesafe Slider */}
       <DistanceSlider
         sliderRaw={sliderRaw}
@@ -271,7 +268,6 @@ export default function HomeScreen() {
           />
         </TouchableOpacity>
       </View>
-
       {/* Filtre Modal */}
       <CategoryFilter
         mode="ar"
@@ -280,20 +276,17 @@ export default function HomeScreen() {
         onSelect={(cats: string[]) => setSelectedCategories(cats)} // çoklu seçim
         selectedCategories={selectedCategories}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: Colors.white,
-    paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
   },
   safeAreaAR: {
     flex: 1,
     backgroundColor: "black",
-    paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
   },
   homeImage: {
     width: "100%",

@@ -1,9 +1,16 @@
 // components/InfoBar.tsx
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  type StyleProp,
+  type ViewStyle,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
-
 import { Colors } from "../constants/colors";
 
 type InfoBarProps = {
@@ -11,6 +18,7 @@ type InfoBarProps = {
   currentAddress?: string | null;
   navigation?: any;
   onPress?: () => void;
+  style?: StyleProp<ViewStyle>; // ✅
 };
 
 export default function InfoBar({
@@ -18,13 +26,15 @@ export default function InfoBar({
   currentAddress,
   navigation,
   onPress,
+  style,
 }: InfoBarProps) {
+  const insets = useSafeAreaInsets();
   const route = useRoute();
   const params: any = route.params ?? {}; // ar parametresini güvenli alabilmek için
 
   if (mode === "top") {
     return (
-      <View style={styles.topBar}>
+      <View style={[styles.topBar, { top: insets.top + 10 }, style]}>
         <MaterialCommunityIcons
           name="map-marker-outline"
           size={22}
@@ -37,7 +47,7 @@ export default function InfoBar({
 
   if (mode === "bottom") {
     return (
-      <View style={styles.bottomBar}>
+      <View style={[styles.bottomBar, style]}>
         <TouchableOpacity
           style={styles.bottomItem}
           onPress={() => navigation.navigate("Home", { ar: false })}
@@ -122,7 +132,7 @@ export default function InfoBar({
 
   if (mode === "filter") {
     return (
-      <View style={styles.filterBar}>
+      <View style={[styles.filterBar, style]}>
         <TouchableOpacity
           style={styles.filterBtn}
           onPress={onPress}
@@ -195,14 +205,14 @@ const styles = StyleSheet.create({
   },
   filterBar: {
     position: "absolute",
-    top: 60,
-    right: 10,
+    top: "7%",
+    right: 9,
   },
   filterBtn: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
-    paddingHorizontal: 15,
+    paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 20,
     elevation: 1,

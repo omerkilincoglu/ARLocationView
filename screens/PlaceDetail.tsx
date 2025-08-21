@@ -8,16 +8,16 @@ import {
   TouchableOpacity,
   Linking,
   ScrollView,
-  Platform,
-  StatusBar as RNStatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import type { Place } from "../types";
 import { formatDistance } from "../lib/geo";
-import imageMap from "../constants/imageMap";
 import { Colors } from "../constants/colors";
+import ImageWithFallback from "../components/ImageWithFallback";
 
 type Params = {
   PlaceDetail: { place: Place; dist: number };
@@ -97,14 +97,10 @@ export default function PlaceDetail() {
   };
 
   return (
-    <View style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Fotoğraf */}
-        <Image
-          source={imageMap[place.image as keyof typeof imageMap]}
-          style={styles.photo}
-          resizeMode="cover"
-        />
+        <ImageWithFallback uri={place.image} style={styles.photo} />
 
         {/* Bilgi Kartı */}
         <View style={styles.card}>
@@ -188,7 +184,7 @@ export default function PlaceDetail() {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -196,7 +192,6 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: Colors.white,
-    paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
   },
   scrollContent: {
     paddingBottom: 30,

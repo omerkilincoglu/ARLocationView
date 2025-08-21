@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import type { Place } from "../types";
 import { formatDistance } from "../lib/geo";
+import ImageWithFallback from "../components/ImageWithFallback";
 
 import { Colors } from "../constants/colors";
 
@@ -19,20 +20,17 @@ type MarkerOverlayProps = {
   place: Place;
   dist: number;
   onPress: () => void;
-  imageMap: Record<string, any>;
 };
 
 export default function MarkerOverlay({
   place,
   dist,
   onPress,
-  imageMap,
 }: MarkerOverlayProps) {
   return (
     <Pressable style={styles.marker} onPress={onPress}>
-      {place.image && imageMap[place.image] && (
-        <Image source={imageMap[place.image]} style={styles.markerPhoto} />
-      )}
+      <ImageWithFallback uri={place.image} style={styles.markerPhoto} />
+
       <View style={styles.textContainer}>
         <Text style={styles.markerTitle} numberOfLines={1}>
           {place.name}

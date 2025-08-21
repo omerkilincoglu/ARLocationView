@@ -8,10 +8,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
-  Platform,
-  StatusBar as RNStatusBar,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { getCurrentPositionAsync, Accuracy } from "expo-location";
 import { Image } from "expo-image";
@@ -19,10 +18,10 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import type { Place, RootStackParamList } from "../types";
 import places from "../data/places.json";
-import imageMap from "../constants/imageMap";
 import { Colors } from "../constants/colors";
 import { distanceMeters, formatDistance } from "../lib/geo";
 import CategoryFilter from "../components/CategoryFilter";
+import ImageWithFallback from "../components/ImageWithFallback";
 
 export default function AllPlacesScreen() {
   const navigation =
@@ -70,12 +69,9 @@ export default function AllPlacesScreen() {
   });
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: Colors.white,
-        paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
-      }}
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: Colors.white }}
+      edges={["top", "bottom"]}
     >
       {/* 🔍 Search + Filter Row */}
       <View style={styles.header}>
@@ -146,9 +142,9 @@ export default function AllPlacesScreen() {
             }
           >
             {/* Fotoğraf (güvenli fallback ile) */}
-            {imageMap[item.image as keyof typeof imageMap] ? (
+            {item.image ? (
               <Image
-                source={imageMap[item.image as keyof typeof imageMap]}
+                source={{ uri: item.image }}
                 style={styles.cardImage}
                 contentFit="cover"
                 transition={300}
@@ -196,7 +192,7 @@ export default function AllPlacesScreen() {
           setIsFilterOpen(false);
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -206,7 +202,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginHorizontal: 12,
-    marginTop: 12,
+    marginTop: 6,
     marginBottom: 6,
   },
   searchWrapper: {

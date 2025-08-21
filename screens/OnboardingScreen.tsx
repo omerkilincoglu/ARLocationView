@@ -1,14 +1,7 @@
 // screens/OnboardingScreen.tsx
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity ,
-  Platform,
-  StatusBar as RNStatusBar,
-} from "react-native";
+import { Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context"; // ✅
 import { Colors } from "../constants/colors";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -23,30 +16,29 @@ export default function OnboardingScreen() {
   const navigation = useNavigation<NavigationProp>();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={[styles.container]} edges={["top", "bottom"]}>
       {/* Arka plan görsel */}
       <Image
-        source={require("../assets/onboarding.png")} // 1080x2400 PNG
+        source={require("../assets/onboarding.png")}
         style={styles.image}
         resizeMode="cover"
       />
-
       {/* İçerik kutusu */}
-      <View style={styles.card}>
+      <TouchableOpacity activeOpacity={1} style={styles.card}>
         <Text style={styles.title}>Discover Nearby Places</Text>
         <Text style={styles.description}>
           Open your camera and discover the world around you through AR. Find
           restaurants, parks, and more as they appear live on your screen
         </Text>
-        <TouchableOpacity  
+        <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Home", { ar: false })}
-          activeOpacity={0.7}   // basınca opaklık hissi
+          activeOpacity={0.7}
         >
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
-      </View>
-    </View>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 }
 
@@ -54,7 +46,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
-    paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
   },
   image: {
     width: "100%",
@@ -62,15 +53,15 @@ const styles = StyleSheet.create({
   },
   card: {
     position: "absolute",
-    bottom: 0, // Kart tam alta yapışsın
-    width: "100%", // Tam genişlik
-    height: "40%", // Ekranın yaklaşık 2/5’i kadar yükseklik
+    bottom: 0,
+    width: "100%",
+    height: "40%",
     backgroundColor: Colors.white,
-    borderTopLeftRadius: 30, // Sadece üst köşeler yuvarlak
+    borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     padding: 25,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: -3 }, // gölge üstten gelsin
+    shadowOffset: { width: 0, height: -3 },
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 8,
@@ -93,9 +84,9 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: Colors.primaryDark,
     paddingVertical: 14,
-    borderRadius: 25, // Daha yuvarlak olsun
+    borderRadius: 25,
     marginHorizontal: 20,
-    top: 80, // Kartın üstüne biraz daha yakın
+    top: 80,
   },
   buttonText: {
     color: Colors.white,

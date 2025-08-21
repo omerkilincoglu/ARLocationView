@@ -28,7 +28,7 @@ export type Place = {
   longitude: number;
   category: PlaceCategory; // Kategoriyi daha güvenli hale getirdik
   description: string;
-  image: string;
+  image?: string;
   maps_link: string;
   address?: string;
 };
