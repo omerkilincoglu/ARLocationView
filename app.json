@@ -24,6 +24,12 @@
       "expo-font"
     ],
     "ios": {
+      "icon": {
+        "dark": "./assets/icons/ios-dark.png",
+        "light": "./assets/icons/ios-light.png",
+        "tinted": "./assets/icons/ios-tinted.png"
+      },
+      "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "We need access to your camera to display nearby places in augmented reality.",
         "NSLocationWhenInUseUsageDescription": "We need access to your location to show places around you based on distance."
