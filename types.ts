@@ -26,11 +26,16 @@ export type Place = {
   name: string;
   latitude: number;
   longitude: number;
-  category: PlaceCategory; // Kategoriyi daha güvenli hale getirdik
+  category: PlaceCategory;
   description: string;
-  image?: string;
+  images?: string[]; 
   maps_link: string;
   address?: string;
+  phone?: string;
+  email?: string;
+  website?: string;
+  instagram?: string;
+  videos?: { url: string; caption?: string }[];
 };
 
 // Sayfalar arası veri aktarımı için navigasyon tipleri

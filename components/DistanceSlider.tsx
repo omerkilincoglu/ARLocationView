@@ -42,7 +42,7 @@ export default function DistanceSlider({
           value={sliderRaw}
           onValueChange={handleSliderChange} // ✅ debounce edilmiş handler
           minimumTrackTintColor={Colors.accent}
-          maximumTrackTintColor="rgba(255, 255, 255, 0.3)"
+          maximumTrackTintColor="rgba(255, 255, 255, 0.8)"
           thumbTintColor={Colors.accent}
         />
       </View>
@@ -54,16 +54,16 @@ const styles = StyleSheet.create({
   sliderContainer: {
     position: "absolute",
     right: 5,
-    top: "10%",
-    bottom: "10%",
+    top: "45%",
+    bottom: "12%",
     width: 70,
     alignItems: "center",
     justifyContent: "center",
     zIndex: 20,
   },
   sliderTrack: {
-    backgroundColor: Colors.primaryDark,
-    height: "50%",
+    backgroundColor: "rgba(17, 50, 149, 0.5)", // Colors.primaryDark ama %80 opak
+    height: "60%",
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
@@ -71,27 +71,27 @@ const styles = StyleSheet.create({
     borderColor: Colors.primaryDark,
   },
   slider: {
-    width: "500%",
-    height: 80,
+    width: "400%",
+    height: 800,
     transform: [{ rotate: "-90deg" }],
   },
   sliderLabel: {
     position: "absolute",
-    top: "18%",
+    top: "9%",
     alignSelf: "center",
   },
   distanceText: {
     color: Colors.accent,
     fontWeight: "bold",
-    fontSize: 14,
-    backgroundColor: Colors.primaryDark,
+    fontSize: 16,
+    backgroundColor: "rgba(17, 50, 149, 0.7)", // Colors.primaryDark ama %80 opak
     borderRadius: 20,
     overflow: "hidden",
     borderWidth: 1.5,
     borderColor: "rgba(255,255,255,0.8)",
 
-    width: 77, // ✅ sabit genişlik
-    height: 30, // ✅ sabit yükseklik
+    width: 70, // ✅ sabit genişlik
+    height: 32, // ✅ sabit yükseklik
     textAlign: "center", // ✅ yatay ortalama
     textAlignVertical: "center", // ✅ dikey ortalama (Android)
     lineHeight: 28, // ✅ yazıyı dikey ortada tut

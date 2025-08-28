@@ -51,7 +51,7 @@ export default function InfoBar({
         <TouchableOpacity
           style={styles.bottomItem}
           onPress={() => navigation.navigate("Home", { ar: false })}
-          activeOpacity={0.7}
+          activeOpacity={0.6}
         >
           <View
             style={[
@@ -78,7 +78,7 @@ export default function InfoBar({
         <TouchableOpacity
           style={styles.bottomItem}
           onPress={() => navigation.push("Home", { ar: true })}
-          activeOpacity={0.7} // basınca opaklık hissi
+          activeOpacity={0.6} // basınca opaklık hissi
         >
           <View
             style={[
@@ -105,7 +105,7 @@ export default function InfoBar({
         <TouchableOpacity
           style={styles.bottomItem}
           onPress={() => navigation.navigate("AllPlaces")}
-          activeOpacity={0.7} // basınca opaklık hissi
+          activeOpacity={0.6} // basınca opaklık hissi
         >
           <View
             style={[
@@ -136,12 +136,12 @@ export default function InfoBar({
         <TouchableOpacity
           style={styles.filterBtn}
           onPress={onPress}
-          activeOpacity={0.7}
+          activeOpacity={0.6}
         >
           <MaterialCommunityIcons
             name="tune-variant"
-            size={22}
-            color={Colors.primaryDark}
+            size={26}
+            color={Colors.white}
           />
         </TouchableOpacity>
       </View>
@@ -205,16 +205,19 @@ const styles = StyleSheet.create({
   },
   filterBar: {
     position: "absolute",
-    top: "7%",
-    right: 9,
+    right: 15,
+    top: "8%", // pause’un üstünde
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 30,
   },
   filterBtn: {
-    flexDirection: "row",
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: Colors.primaryDark,
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 20,
-    elevation: 1,
+    elevation: 5,
   },
 });

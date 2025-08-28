@@ -1,20 +1,12 @@
 // components/MarkerOverlay.tsx
 import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  Pressable,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
+import { View, Text, Pressable, StyleSheet, Dimensions } from "react-native";
 import type { Place } from "../types";
 import { formatDistance } from "../lib/geo";
-import ImageWithFallback from "../components/ImageWithFallback";
-
+import ImageWithFallback from "./ImageWithFallback";
 import { Colors } from "../constants/colors";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 type MarkerOverlayProps = {
   place: Place;
@@ -28,15 +20,24 @@ export default function MarkerOverlay({
   onPress,
 }: MarkerOverlayProps) {
   return (
-    <Pressable style={styles.marker} onPress={onPress}>
-      <ImageWithFallback uri={place.image} style={styles.markerPhoto} />
+    <Pressable
+      style={({ pressed }) => [styles.marker, { opacity: pressed ? 0.85 : 1 }]}
+      onPress={onPress}
+      hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+      android_ripple={{ color: "rgba(255,255,255,0.15)" }}
+    >
+      {/* Resim */}
+      <ImageWithFallback uri={place.images?.[0]} style={styles.markerPhoto} />
 
+      {/* Başlık + Mesafe */}
       <View style={styles.textContainer}>
         <Text style={styles.markerTitle} numberOfLines={1}>
           {place.name}
         </Text>
         <Text style={styles.markerSub}>{formatDistance(dist)}</Text>
       </View>
+
+      {/* Kuyruk oku */}
       <View style={styles.markerTail} />
     </Pressable>
   );
@@ -44,18 +45,17 @@ export default function MarkerOverlay({
 
 const styles = StyleSheet.create({
   marker: {
-    position: "absolute",
-    width: width * 1, // ekranın %45’i kadar genişlik
-    maxWidth: 200, // çok büyümesin
-    minWidth: 150, // çok küçülmesin
+    width: width * 0.45,
+    maxWidth: 200,
+    minWidth: 150,
     backgroundColor: Colors.primaryDark,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: "rgba(11, 124, 153, 0.3)", // Daha yumuşak çerçeve
+    borderColor: "rgba(11,124,153,0.3)",
     alignItems: "center",
     padding: 8,
     shadowColor: "#000",
-    shadowOpacity: 0.4, // Daha hafif gölge
+    shadowOpacity: 0.25,
     shadowRadius: 8,
     elevation: 8,
   },
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   markerTitle: {
-    color: "#FFFFFF", // Tam beyaz
+    color: "#FFF",
     fontWeight: "bold",
     fontSize: 14,
     textAlign: "center",
@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
     color: Colors.accent,
     fontSize: 12,
     textAlign: "center",
-    marginTop: 5,
-    fontWeight: "bold",
+    marginTop: 4,
+    fontWeight: "600",
   },
   markerTail: {
     position: "absolute",
@@ -92,6 +92,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 8,
     borderLeftColor: "transparent",
     borderRightColor: "transparent",
-    borderTopColor: Colors.accent, // Marker ile aynı renk
+    borderTopColor: Colors.accent,
   },
 });

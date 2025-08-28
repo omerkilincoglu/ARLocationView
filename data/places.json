@@ -6,9 +6,15 @@
     "longitude": 30.3324093,
     "category": "post_office",
     "description": "The PTT branch located inside the campus.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/ptt.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7438166,30.3324093",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "phone": "+902643460529",
+    "website": "https://www.kargo.subeler.com/ptt-kargo-sakarya-universitesi-kampusu-subesi.html",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/ptt-1.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/ptt-2.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/ptt-3.jpg?v=1756326691000"
+    ]
   },
   {
     "id": "2",
@@ -17,9 +23,20 @@
     "longitude": 30.332127,
     "category": "library",
     "description": "The main library of Sakarya University.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/library-uni.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.741753,30.332127",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "phone": "+902642955358",
+    "email": "kutuphane@sakarya.edu.tr",
+    "website": "https://www.sakarya.edu.tr",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/library-uni-1.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/library-uni-2.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/library-uni-3.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/library-uni-4.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/library-uni-5.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/library-uni-6.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/library-uni-7.jpg?v=1756326691000"
+    ]
   },
   {
     "id": "3",
@@ -28,9 +45,15 @@
     "longitude": 30.3289517,
     "category": "bus_stop",
     "description": "Bus and minibus stops located in the last stop area of the campus.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/bus_stop.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7403243,30.3289517",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/bus_stop-1.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/bus_stop-2.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/bus_stop-3.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/bus_stop-4.jpg?v=1756326691000",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/bus_stop-5.jpg?v=1756326691000"
+    ]
   },
   {
     "id": "4",
@@ -39,20 +62,34 @@
     "longitude": 30.3303838,
     "category": "cafe",
     "description": "The campus dining hall and cafe area.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/cafe.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7440126,30.3303838",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "website": "https://iletisim.sakarya.edu.tr/tr/icerik/20122/103212/yemekhane-ve-kafeteryalar",
+    "instagram": "https://www.instagram.com/saukafe",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/cafe-1.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/cafe-2.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/cafe-3.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/cafe-4.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/cafe-5.jpg?v=1756326691001"
+    ]
   },
   {
     "id": "5",
-    "name": "Yeni Mosque (Adapazarı)",
+    "name": "New Mosque (Adapazarı)",
     "latitude": 40.773152,
     "longitude": 30.403948,
     "category": "mosque",
     "description": "A mosque located at Yenicami Street No:1, Adapazarı.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/mosque_yenicami.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.773152,30.403948",
-    "address": "Adapazarı / Sakarya / Turkey"
+    "address": "Adapazarı / Sakarya / Turkey",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/mosque_yenicami-1.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/mosque_yenicami-2.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/mosque_yenicami-3.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/mosque_yenicami-4.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/mosque_yenicami-5.jpg?v=1756326691001"
+    ]
   },
   {
     "id": "6",
@@ -61,9 +98,14 @@
     "longitude": 30.4011444,
     "category": "square",
     "description": "The Gar Square located in Adapazarı.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/square_gar.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7751923,30.4011444",
-    "address": "Adapazarı / Sakarya / Turkey"
+    "address": "Adapazarı / Sakarya / Turkey",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/square_gar-1.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/square_gar-2.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/square_gar-3.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/square_gar-4.jpg?v=1756326691001"
+    ]
   },
   {
     "id": "7",
@@ -72,20 +114,38 @@
     "longitude": 30.3293117,
     "category": "dormitory",
     "description": "A cozy cafe and event space located in the Sakarya University campus.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/unigarden.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7452962,30.3293117",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "phone": "+908505151505",
+    "email": "info@unigardenyurt.com",
+    "website": "https://www.unigardenyurt.com",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/unigarden-1.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/unigarden-2.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/unigarden-3.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/unigarden-4.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/unigarden-5.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/unigarden-6.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/unigarden-7.jpg?v=1756326691001"
+    ]
   },
   {
     "id": "8",
-    "name": "Faculty of Humanities and Social Sciences",
+    "name": "Faculty of Humanities",
     "latitude": 40.7433798,
     "longitude": 30.3351548,
     "category": "faculty",
     "description": "Faculty of Humanities and Social Sciences.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/humanities_faculty.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7433798,30.3351548",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "phone": "+902642954252",
+    "email": "itbf@sakarya.edu.tr",
+    "website": "https://itbf.sakarya.edu.tr",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/humanities_faculty-1.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/humanities_faculty-2.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/humanities_faculty-3.jpg?v=1756326691001"
+    ]
   },
   {
     "id": "9",
@@ -94,31 +154,56 @@
     "longitude": 30.33539,
     "category": "administration",
     "description": "Student Affairs Department of Sakarya University.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/student_affairs.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.743086,30.33539",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "phone": "+902642955454",
+    "email": "ogrisl@sakarya.edu.tr",
+    "website": "https://ogrisl.sakarya.edu.tr",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/student_affairs-1.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/student_affairs-2.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/student_affairs-3.jpg?v=1756326691001"
+    ]
   },
   {
     "id": "10",
-    "name": "Institute of Science - Sakarya University",
+    "name": "Institute of Science",
     "latitude": 40.7431061,
     "longitude": 30.3344142,
     "category": "institute",
     "description": "Institute of Science at Sakarya University.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/science_institute.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7431061,30.3344142",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "phone": "+902642955542",
+    "email": "fbe@sakarya.edu.tr",
+    "website": "https://fbe.sakarya.edu.tr",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/science_institute-1.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/science_institute-2.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/science_institute-3.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/science_institute-4.jpg?v=1756326691001"
+    ]
   },
   {
     "id": "11",
-    "name": "Coffee Keyfi - Sakarya University",
+    "name": "Coffee Keyfi (Campus)",
     "latitude": 40.7426814,
     "longitude": 30.3333046,
     "category": "cafe",
     "description": "A coffee place located inside Sakarya University campus.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/coffee_keyfi.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7426814,30.3333046",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "instagram": "https://www.instagram.com/saukafe",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/coffee_keyfi-1.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/coffee_keyfi-2.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/coffee_keyfi-3.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/coffee_keyfi-4.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/coffee_keyfi-5.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/coffee_keyfi-6.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/coffee_keyfi-7.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/coffee_keyfi-8.jpg?v=1756326691001"
+    ]
   },
   {
     "id": "12",
@@ -127,9 +212,14 @@
     "longitude": 30.3614528,
     "category": "cafe",
     "description": "Popular local restaurant in Serdivan.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/mavidurak.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7620514,30.3614528",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/mavidurak-1.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/mavidurak-2.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/mavidurak-3.jpg?v=1756326691001",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/mavidurak-4.jpg?v=1756326691001"
+    ]
   },
   {
     "id": "13",
@@ -138,9 +228,18 @@
     "longitude": 30.3738691,
     "category": "hospital",
     "description": "Public hospital serving Serdivan district.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/serdivan_hospital.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7657505,30.3738691",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "phone": "+902642011000",
+    "email": "sakarya.serdivandh@saglik.gov.tr",
+    "website": "https://serdivandh.saglik.gov.tr",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/serdivan_hospital-1.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/serdivan_hospital-2.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/serdivan_hospital-3.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/serdivan_hospital-4.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/serdivan_hospital-5.jpg?v=1756326691002"
+    ]
   },
   {
     "id": "14",
@@ -149,53 +248,97 @@
     "longitude": 30.3609474,
     "category": "police",
     "description": "Serdivan district police center.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/serdivan_police.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7652536,30.3609474",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "phone": "+902642110811",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/serdivan_police-1.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/serdivan_police-2.jpg?v=1756326691002"
+    ]
   },
   {
     "id": "15",
-    "name": "Orta Garage",
+    "name": "Orta Garaj",
     "latitude": 40.7740477,
     "longitude": 30.3948328,
     "category": "bus_stop",
     "description": "Central bus garage in Adapazarı.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/ortagaraj.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7740477,30.3948328",
-    "address": "Adapazarı / Sakarya / Turkey"
+    "address": "Adapazarı / Sakarya / Turkey",
+    "phone": "+902642893000",
+    "email": "sbb@hs01.kep.tr",
+    "website": "https://www.sakarya.bel.tr/tr/Sayfa/ulasim/50",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/ortagaraj-1.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/ortagaraj-2.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/ortagaraj-3.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/ortagaraj-4.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/ortagaraj-5.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/ortagaraj-6.jpg?v=1756326691002"
+    ]
   },
   {
     "id": "16",
-    "name": "Sakarya Metropolitan Bus Terminal",
+    "name": "Sakarya Büyükşehir Bus Terminal",
     "latitude": 40.7291306,
     "longitude": 30.3796739,
-    "category": "terminal",
+    "category": "bus_stop",
     "description": "Main intercity bus terminal of Sakarya.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sakarya_terminal.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7291306,30.3796739",
-    "address": "Adapazarı / Sakarya / Turkey"
+    "address": "Adapazarı / Sakarya / Turkey",
+    "phone": "+902642812218",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sakarya_terminal-1.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sakarya_terminal-2.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sakarya_terminal-3.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sakarya_terminal-4.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sakarya_terminal-5.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sakarya_terminal-6.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sakarya_terminal-7.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sakarya_terminal-8.jpg?v=1756326691002"
+    ]
   },
   {
     "id": "17",
-    "name": "Sopeli Nature Retreat",
+    "name": "Sopeli",
     "latitude": 40.6620919,
     "longitude": 30.2161226,
     "category": "park",
     "description": "Nature retreat and restaurant area in Sapanca.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sopeli.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.6620919,30.2161226",
-    "address": "Sapanca / Sakarya / Turkey"
+    "address": "Sapanca / Sakarya / Turkey",
+    "phone": "+905320655239",
+    "instagram": "https://www.instagram.com/sopelidogalyasamkoyu",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sopeli-1.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sopeli-2.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sopeli-3.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sopeli-4.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sopeli-5.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/sopeli-6.jpg?v=1756326691002"
+    ]
   },
   {
     "id": "18",
-    "name": "Tunatan Facilities - Serdivan",
+    "name": "Tunatan Facilities",
     "latitude": 40.7589525,
     "longitude": 30.3651987,
     "category": "restaurant",
     "description": "Popular restaurant and rest facility in Serdivan.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tunatan.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7589525,30.3651987",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "phone": "+902642754545",
+    "email": "tt@tunatan.com.tr",
+    "website": "https://www.tunatan.com.tr",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tunatan-1.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tunatan-2.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tunatan-3.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tunatan-4.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tunatan-5.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tunatan-6.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tunatan-7.jpg?v=1756326691002"
+    ]
   },
   {
     "id": "19",
@@ -204,9 +347,16 @@
     "longitude": 30.3340996,
     "category": "mosque",
     "description": "Main mosque of Sakarya University campus.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/campus_mosque.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7441317,30.3340996",
-    "address": "Serdivan / Sakarya / Turkey"
+    "address": "Serdivan / Sakarya / Turkey",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/campus_mosque-1.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/campus_mosque-2.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/campus_mosque-3.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/campus_mosque-4.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/campus_mosque-5.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/campus_mosque-6.jpg?v=1756326691002"
+    ]
   },
   {
     "id": "20",
@@ -215,9 +365,20 @@
     "longitude": 30.3556445,
     "category": "bus_stop",
     "description": "High-speed train station in Arifiye.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yht_arifiye.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7134365,30.3556445",
-    "address": "Arifiye / Sakarya / Turkey"
+    "address": "Arifiye / Sakarya / Turkey",
+    "phone": "+902642294423",
+    "website": "https://ebilet.tcddtasimacilik.gov.tr",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yht_arifiye-1.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yht_arifiye-2.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yht_arifiye-3.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yht_arifiye-4.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yht_arifiye-5.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yht_arifiye-6.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yht_arifiye-7.jpg?v=1756326691002",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yht_arifiye-8.jpg?v=1756326691002"
+    ]
   },
   {
     "id": "21",
@@ -226,9 +387,18 @@
     "longitude": 29.8842621,
     "category": "institute",
     "description": "Technopark of Kocaeli University, innovation and research hub.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/technopark.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7038961,29.8842621",
-    "address": "İzmit / Kocaeli / Turkey"
+    "address": "İzmit / Kocaeli / Turkey",
+    "phone": "+902623412266",
+    "email": "info@kouteknopark.com",
+    "website": "https://kouteknopark.com",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/technopark-1.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/technopark-2.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/technopark-3.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/technopark-4.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/technopark-5.jpg?v=1756326691003"
+    ]
   },
   {
     "id": "22",
@@ -237,9 +407,15 @@
     "longitude": 29.8848602,
     "category": "health_center",
     "description": "Yeniköy family health center, providing primary health care.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yenikoy_health.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7051265,29.8848602",
-    "address": "İzmit / Kocaeli / Turkey"
+    "address": "İzmit / Kocaeli / Turkey",
+    "phone": "+902623414303",
+    "website": "https://www.basiskele.bel.tr/telefon-rehberi-d/4/19/yenikoy-aile-sagligi-merkezi",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yenikoy_health-1.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yenikoy_health-2.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yenikoy_health-3.jpg?v=1756326691003"
+    ]
   },
   {
     "id": "23",
@@ -248,20 +424,38 @@
     "longitude": 29.8818892,
     "category": "institute",
     "description": "Defense and aviation factory in Yeniköy.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tekom.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7050236,29.8818892",
-    "address": "İzmit / Kocaeli / Turkey"
+    "address": "İzmit / Kocaeli / Turkey",
+    "phone": "+902623715313",
+    "email": "info@tekom.com.tr",
+    "website": "https://tekom.com.tr",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tekom-1.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tekom-2.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tekom-3.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tekom-4.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tekom-5.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/tekom-6.jpg?v=1756326691003"
+    ]
   },
   {
     "id": "24",
     "name": "Izmit Intercity Bus Terminal",
     "latitude": 40.7761011,
     "longitude": 29.9742543,
-    "category": "terminal",
+    "category": "bus_stop",
     "description": "Izmit intercity bus station.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_terminal.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7761011,29.9742543",
-    "address": "İzmit / Kocaeli / Turkey"
+    "address": "İzmit / Kocaeli / Turkey",
+    "phone": "+902623111011",
+    "website": "https://www.kocaeli.bel.tr/hizmet/terminaller-133.html",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_terminal-1.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_terminal-2.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_terminal-3.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_terminal-4.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_terminal-5.jpg?v=1756326691003"
+    ]
   },
   {
     "id": "25",
@@ -270,9 +464,15 @@
     "longitude": 29.9299231,
     "category": "square",
     "description": "The historical bazaar of Izmit.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_bazaar.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.7648858,29.9299231",
-    "address": "İzmit / Kocaeli / Turkey"
+    "address": "İzmit / Kocaeli / Turkey",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_bazaar-1.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_bazaar-2.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_bazaar-3.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_bazaar-4.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/izmit_bazaar-5.jpg?v=1756326691003"
+    ]
   },
   {
     "id": "26",
@@ -281,19 +481,40 @@
     "longitude": 29.9216517,
     "category": "faculty",
     "description": "Main campus of Kocaeli University.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/kocaeli_university.jpg",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.8221732,29.9216517",
-    "address": "İzmit / Kocaeli / Turkey"
+    "address": "İzmit / Kocaeli / Turkey",
+    "phone": "+902623031000",
+    "email": "rekiletisim@kocaeli.edu.tr",
+    "website": "https://www.kocaeli.edu.tr",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/kocaeli_university-1.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/kocaeli_university-2.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/kocaeli_university-3.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/kocaeli_university-4.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/kocaeli_university-5.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/kocaeli_university-6.jpg?v=1756326691003"
+    ]
   },
   {
     "id": "27",
-    "name": "Yazlık Thermal Springs - Gölcük",
+    "name": "Yazlik Thermal Springs",
     "latitude": 40.6979725,
     "longitude": 29.877734,
     "category": "park",
-    "description": "Thermal springs located in Gölcük district, known as Yazlık Thermal Springs.",
-    "image": "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yazlik_ilicasi.jpg",
+    "description": "Thermal springs located in Gölcük district, known as Yazlık Ilıcası.",
     "maps_link": "https://www.google.com/maps/search/?api=1&query=40.6979725,29.877734",
-    "address": "Gölcük / Kocaeli / Turkey"
+    "address": "Gölcük / Kocaeli / Turkey",
+    "website": "https://gezgorkocaeli.com/gezi-rehberi/golcuk-yazlik-ilicasi",
+    "images": [
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yazlik_ilicasi-1.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yazlik_ilicasi-2.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yazlik_ilicasi-3.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yazlik_ilicasi-4.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yazlik_ilicasi-5.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yazlik_ilicasi-6.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yazlik_ilicasi-7.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yazlik_ilicasi-8.jpg?v=1756326691003",
+      "https://raw.githubusercontent.com/omerkilincoglu/arlocation-assets/main/images/yazlik_ilicasi-9.jpg?v=1756326691003"
+    ]
   }
 ]

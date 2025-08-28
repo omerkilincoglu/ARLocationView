@@ -1,8 +1,13 @@
 // screens/HomeScreen.tsx
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useCallback,
+} from "react";
 import {
   View,
-  Text,
   TouchableOpacity,
   StyleSheet,
   Dimensions,
@@ -10,7 +15,13 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CameraView, useCameraPermissions } from "expo-camera";
-import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
+import {
+  useNavigation,
+  useRoute,
+  RouteProp,
+  useFocusEffect,
+  useIsFocused,
+} from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import * as Location from "expo-location";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -25,11 +36,12 @@ import {
 } from "../lib/geo";
 import MarkerOverlay from "../components/MarkerOverlay";
 import DistanceSlider from "../components/DistanceSlider";
-import InfoBar from "../components/InfoBar"; // ✅ doğru import
+import InfoBar from "../components/InfoBar";
 import { Colors } from "../constants/colors";
 import CategoryFilter from "../components/CategoryFilter";
+
 const { width: SCREEN_W } = Dimensions.get("window");
-const MAX_DISTANCE_DEFAULT = 100000; // 100 km
+const MAX_DISTANCE_DEFAULT = 70000; // 70 km
 const FOV = 60;
 
 type Coords = { latitude: number; longitude: number };
@@ -39,6 +51,7 @@ export default function HomeScreen() {
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<RootStackParamList, "Home">>();
   const isARActive = route.params?.ar || false;
+  const isFocused = useIsFocused();
 
   const [currentAddress, setCurrentAddress] = useState<string | null>(null);
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
@@ -57,7 +70,8 @@ export default function HomeScreen() {
   );
 
   const lastHeadingRef = useRef(0);
-  const smoothAngle = (prev: number, next: number, alpha = 0.15) => {
+  const headingBuffer = useRef<number[]>([]);
+  const smoothAngle = (prev: number, next: number, alpha = 0.05) => {
     const diff = ((next - prev + 540) % 360) - 180;
     return (prev + alpha * diff + 360) % 360;
   };
@@ -103,57 +117,72 @@ export default function HomeScreen() {
   }, []);
 
   // 📍 AR sensörleri
-  useEffect(() => {
-    if (!isARActive) return;
-    if (!cameraPermission?.granted) return;
+  useFocusEffect(
+    useCallback(() => {
+      if (!isARActive) return;
+      if (!cameraPermission || !cameraPermission.granted) return;
 
-    let locSub: Location.LocationSubscription | null = null;
-    let headSub: { remove: () => void } | null = null;
+      let locSub: Location.LocationSubscription | null = null;
+      let headSub: { remove: () => void } | null = null;
 
-    const startSensors = async () => {
-      const cur = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.BestForNavigation,
-      });
-      setCoords(cur.coords);
-
-      locSub = await Location.watchPositionAsync(
-        {
+      const startSensors = async () => {
+        const cur = await Location.getCurrentPositionAsync({
           accuracy: Location.Accuracy.BestForNavigation,
-          timeInterval: 1500,
-          distanceInterval: 5,
-        },
-        (loc) => {
-          const last = coords;
-          if (last) {
-            const d = distanceMeters(last, loc.coords);
-            if (d < 2) return; // 🔑 2 metreden küçük hareketi yok say
+        });
+        setCoords(cur.coords);
+
+        locSub = await Location.watchPositionAsync(
+          {
+            accuracy: Location.Accuracy.BestForNavigation,
+            timeInterval: 1500,
+            distanceInterval: 5,
+          },
+          (loc) => {
+            const last = coords;
+            if (last) {
+              const d = distanceMeters(last, loc.coords);
+              if (d < 1) return;
+            }
+            setCoords(loc.coords);
           }
-          setCoords(loc.coords);
-        }
-      );
+        );
 
-      headSub = await Location.watchHeadingAsync((h) => {
-        if (h.trueHeading && h.trueHeading > 0) {
-          const diff = Math.abs(h.trueHeading - lastHeadingRef.current);
-          if (diff < 2) return; // 🔑 küçük dalgalanmaları yok say (2° altında)
-          const blended = smoothAngle(lastHeadingRef.current, h.trueHeading);
-          lastHeadingRef.current = blended;
-          setHeading(blended);
-        }
-      });
-    };
-    startSensors();
+        headSub = await Location.watchHeadingAsync((h) => {
+          if (h.trueHeading && h.trueHeading > 0) {
+            const diff = Math.abs(h.trueHeading - lastHeadingRef.current);
+            if (diff < 0.5) return;
 
-    return () => {
-      locSub?.remove();
-      headSub?.remove();
-    };
-  }, [isARActive, cameraPermission?.granted]);
+            const alpha = Math.min(0.3, 0.05 + diff * 0.02);
+            const blended = smoothAngle(
+              lastHeadingRef.current,
+              h.trueHeading,
+              alpha
+            );
+
+            headingBuffer.current.push(blended);
+            if (headingBuffer.current.length > 5) {
+              headingBuffer.current.shift();
+            }
+            const avg =
+              headingBuffer.current.reduce((a, b) => a + b, 0) /
+              headingBuffer.current.length;
+
+            lastHeadingRef.current = avg;
+            setHeading(avg);
+          }
+        });
+      };
+
+      startSensors();
+
+      return () => {
+        locSub?.remove();
+        headSub?.remove();
+      };
+    }, [isARActive, cameraPermission])
+  );
 
   // 📍 Marker filtreleme
-  // 📍 Markerları hesapla ve ekranda gösterilecek listeyi döndür
-  // - Eğer pause aktif değilse: yeni markerleri hesapla ve kaydet
-  // - Eğer pause aktifse: yeni hesaplananları değil, en son kaydedilen markerleri göster (sabit kalıyor)
   const filteredMarkers = useMemo(() => {
     if (!coords || heading === null) return [];
 
@@ -166,139 +195,131 @@ export default function HomeScreen() {
       .map((p) => {
         const dist = distanceMeters(coords, p);
         const bear = bearingDeg(coords, p);
-        const rel = relativeHeadingDeg(bear, heading);
-        return { place: p, dist, rel };
+        let rel = relativeHeadingDeg(bear, heading);
+        if (Math.abs(rel) < 1) rel = 0;
+        return { place: p, dist: Math.round(dist), rel };
       })
       .filter((m) => m.dist <= maxDistance)
       .sort((a, b) => a.dist - b.dist);
 
-    // eğer pause değilse yeni markerleri güncelle
-    if (!paused) {
-      lastMarkersRef.current = newMarkers;
-    }
-
-    // eğer pause ise son bilinen markerleri göster
+    if (!paused) lastMarkersRef.current = newMarkers;
     return paused ? lastMarkersRef.current : newMarkers;
   }, [coords, heading, maxDistance, selectedCategories, paused]);
 
-  /** 📌 Normal Mod **/
-  if (!isARActive) {
-    return (
-      <SafeAreaView style={{ flex: 1 }} edges={["top", "bottom"]}>
-        <Image
-          source={require("../assets/home.png")}
-          style={styles.homeImage}
-          resizeMode="cover"
-        />
-
-        <InfoBar mode="top" currentAddress={currentAddress} />
-        <InfoBar mode="bottom" navigation={navigation} />
-      </SafeAreaView>
-    );
-  }
-
-  /** 📌 AR Mod **/
+  // ✅ Tek return, koşullu render içeride
   return (
-    <SafeAreaView style={styles.safeAreaAR} edges={["top", "bottom"]}>
-      <CameraView style={StyleSheet.absoluteFillObject} facing="back" />
-      {/* iPhone X alt çentik için ✅ */}
-      <InfoBar mode="filter" onPress={() => setFilterVisible(true)} />
-      <InfoBar mode="bottom" navigation={navigation} />
-
-      {/* Markerlar */}
-      <View style={StyleSheet.absoluteFillObject} pointerEvents="box-none">
-        {filteredMarkers.map((m, index) => {
-          const angle = m.rel;
-          const xBase = SCREEN_W / 2 + (angle / (FOV / 2)) * (SCREEN_W / 2);
-          const isVisible = Math.abs(angle) <= FOV / 2;
-          if (isVisible) {
-            let y = 120 + Math.min(320, Math.max(0, m.dist / 18));
-            const t = clamp((m.dist - 300) / (maxDistance - 300), 0, 1);
-            const scale = clamp(1.1 - 0.3 * t, 0.9, 1.1);
-            const opacity = clamp(1.2 - 0.3 * t, 0.6, 1);
-
-            // 🔹 Markerları biraz dağıtmak için offset ekledik
-            const offsetX = ((index % 3) - 1) * 80; // -80, 0, +80 px
-            const offsetY = ((index % 2) - 0.5) * 60; // -30, +30 px
-
-            return (
-              <View
-                key={m.place.id}
-                style={{
-                  position: "absolute",
-                  left: xBase + offsetX,
-                  top: y + offsetY,
-                  transform: [{ translateX: -90 }, { scale }],
-                  opacity,
-                }}
-              >
-                <MarkerOverlay
-                  place={m.place}
-                  dist={m.dist}
-                  onPress={() =>
-                    navigation.navigate("PlaceDetail", {
-                      place: m.place,
-                      dist: m.dist,
-                    })
-                  }
-                />
-              </View>
-            );
-          }
-          return null;
-        })}
-      </View>
-      {/* Mesafe Slider */}
-      <DistanceSlider
-        sliderRaw={sliderRaw}
-        setSliderRaw={setSliderRaw}
-        maxDistance={maxDistance}
-      />
-      {/* Pause / Resume Button */}
-      <View style={styles.pauseBtnWrapper}>
-        <TouchableOpacity
-          onPress={() => setPaused(!paused)}
-          style={styles.pauseBtn}
-          activeOpacity={0.7}
-        >
-          <MaterialCommunityIcons
-            name={paused ? "play" : "pause"}
-            size={28}
-            color={Colors.white}
+    <SafeAreaView
+      style={isARActive ? styles.safeAreaAR : styles.safeArea}
+      edges={["top", "bottom"]}
+    >
+      {!isARActive ? (
+        <>
+          <Image
+            source={require("../assets/home.png")}
+            style={styles.homeImage}
+            resizeMode="cover"
           />
-        </TouchableOpacity>
-      </View>
-      {/* Filtre Modal */}
-      <CategoryFilter
-        mode="ar"
-        visible={filterVisible}
-        onClose={() => setFilterVisible(false)}
-        onSelect={(cats: string[]) => setSelectedCategories(cats)} // çoklu seçim
-        selectedCategories={selectedCategories}
-      />
+          <InfoBar mode="top" currentAddress={currentAddress} />
+          <InfoBar mode="bottom" navigation={navigation} />
+        </>
+      ) : (
+        <>
+          {isFocused && (
+            <CameraView style={StyleSheet.absoluteFillObject} facing="back" />
+          )}
+          <InfoBar mode="bottom" navigation={navigation} />
+          {/* Markerlar */}
+          <View style={StyleSheet.absoluteFillObject} pointerEvents="box-none">
+            {filteredMarkers.map((m, index) => {
+              const angle = m.rel;
+              const xBase = SCREEN_W / 2 + (angle / (FOV / 2)) * (SCREEN_W / 2);
+              const isVisible = Math.abs(angle) <= FOV / 2;
+              if (!isVisible) return null;
+
+              let y = 120 + Math.min(320, Math.max(0, m.dist / 18));
+              const t = clamp((m.dist - 300) / (maxDistance - 300), 0, 1);
+              const scale = clamp(1.1 - 0.3 * t, 0.9, 1.1);
+              const opacity = clamp(1.2 - 0.3 * t, 0.6, 1);
+              const offsetX = ((index % 3) - 1) * 80;
+              const offsetY = ((index % 2) - 0.5) * 60;
+
+              return (
+                <View
+                  key={m.place.id}
+                  style={{
+                    position: "absolute",
+                    left: xBase + offsetX,
+                    top: y + offsetY,
+                    transform: [{ translateX: -90 }, { scale }],
+                    opacity,
+                    zIndex: Math.round(100000 - m.dist), // ✅ yakındaki marker üste
+                  }}
+                >
+                  <MarkerOverlay
+                    place={m.place}
+                    dist={m.dist}
+                    onPress={() =>
+                      navigation.navigate("PlaceDetail", {
+                        place: m.place,
+                        dist: m.dist,
+                      })
+                    }
+                  />
+                </View>
+              );
+            })}
+          </View>
+
+          {/* Mesafe Slider */}
+          <DistanceSlider
+            sliderRaw={sliderRaw}
+            setSliderRaw={setSliderRaw}
+            maxDistance={maxDistance}
+          />
+
+          <InfoBar mode="filter" onPress={() => setFilterVisible(true)} />
+
+          {/* Pause Button */}
+          <View style={styles.pauseBtnWrapper}>
+            <TouchableOpacity
+              onPress={() => setPaused(!paused)}
+              style={styles.pauseBtn}
+              activeOpacity={0.6}
+            >
+              <MaterialCommunityIcons
+                name={paused ? "play" : "pause"}
+                size={26}
+                color={Colors.white}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/* Filtre Modal */}
+          <CategoryFilter
+            mode="ar"
+            visible={filterVisible}
+            onClose={() => setFilterVisible(false)}
+            onSelect={(cats: string[]) => setSelectedCategories(cats)}
+            selectedCategories={selectedCategories}
+          />
+        </>
+      )}
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-  safeAreaAR: {
-    flex: 1,
-    backgroundColor: "black",
-  },
-  homeImage: {
-    width: "100%",
-    height: "100%",
-  },
+  safeArea: { flex: 1 },
+  safeAreaAR: { flex: 1, backgroundColor: "black" },
+  homeImage: { width: "100%", height: "100%" },
+
   pauseBtnWrapper: {
-    position: "absolute", // 🔑 buton bağımsız dursun
-    right: 15, // slider hizasına gelsin
-    bottom: "23%", // slider’ın hemen altına otursun
+    position: "absolute",
+    right: 15,
+    bottom: "12%",
     alignItems: "center",
     justifyContent: "center",
-    zIndex: 30, // markerların üstünde kalsın
+    zIndex: 30,
   },
   pauseBtn: {
     width: 50,

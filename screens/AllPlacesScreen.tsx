@@ -93,7 +93,7 @@ export default function AllPlacesScreen() {
         <TouchableOpacity
           style={styles.filterBtn}
           onPress={() => setIsFilterOpen(true)}
-          activeOpacity={0.7}
+          activeOpacity={0.6}
         >
           <MaterialCommunityIcons
             name="tune-variant"
@@ -142,9 +142,9 @@ export default function AllPlacesScreen() {
             }
           >
             {/* Fotoğraf (güvenli fallback ile) */}
-            {item.image ? (
+            {item.images && item.images.length > 0 ? (
               <Image
-                source={{ uri: item.image }}
+                source={{ uri: item.images[0] }}
                 style={styles.cardImage}
                 contentFit="cover"
                 transition={300}

@@ -5,10 +5,12 @@ import {
   Text,
   TextInput,
   Modal,
+  Pressable,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Animated,
   StyleSheet,
+  Easing,
   FlatList,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -42,7 +44,92 @@ export const categories = [
   { key: "police", label: "Police", icon: "police-badge" },
   { key: "square", label: "Square", icon: "city" },
   { key: "post_office", label: "Post Office", icon: "email" },
+  { key: "park", label: "Park", icon: "pine-tree" },
 ];
+export const categoryColors: Record<string, string> = {
+  all: Colors.accent,
+  cafe: "#795548",
+  restaurant: "#FF9800",
+  dormitory: "#cfa20cff",
+  mosque: "#3F51B5",
+  library: "#110ddfff",
+  bus_stop: "#037016ff",
+  terminal: "#8BC34A",
+  school: "#d63434ff",
+  university: "#2196F3",
+  faculty: "#9C27B0",
+  administration: "#607D8B",
+  institute: "#009688",
+  hospital: "#F44336",
+  health_center: "#E91E63",
+  pharmacy: "#673AB7",
+  police: "#000000",
+  square: "#6e6968ff",
+  post_office: "#FFC107",
+  park: "#4CAF50",
+};
+
+// 🔹 Alt component: animasyonlu kategori ikonu
+function AnimatedCategoryIcon({
+  isSelected,
+  icon,
+  categoryKey,
+}: {
+  isSelected: boolean;
+  icon: string;
+  categoryKey: string;
+}) {
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+  const colorAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    // scale → native
+    Animated.spring(scaleAnim, {
+      toValue: isSelected ? 1.15 : 1,
+      friction: 6,
+      useNativeDriver: true,
+    }).start();
+
+    // color → js
+    Animated.timing(colorAnim, {
+      toValue: isSelected ? 1 : 0,
+      duration: 40,
+      useNativeDriver: false,
+      easing: Easing.linear,
+    }).start();
+  }, [isSelected]);
+
+  const animatedColor = colorAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [Colors.primary, categoryColors[categoryKey] || Colors.accent],
+  });
+
+  return (
+    <Animated.View
+      style={{
+        transform: [{ scale: scaleAnim }],
+      }}
+    >
+      <Animated.View
+        style={{
+          width: 56,
+          height: 56,
+          borderRadius: 28,
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 6,
+          backgroundColor: animatedColor, // sadece burada renk
+        }}
+      >
+        <MaterialCommunityIcons
+          name={icon as any}
+          size={24}
+          color={isSelected ? Colors.white : Colors.primaryDark}
+        />
+      </Animated.View>
+    </Animated.View>
+  );
+}
 
 export default function CategoryFilter({
   visible,
@@ -54,45 +141,47 @@ export default function CategoryFilter({
   const [searchQuery, setSearchQuery] = useState("");
   const slideAnim = useRef(new Animated.Value(-400)).current;
 
-  // Animasyon
+  // Açılış animasyonu
   useEffect(() => {
+    slideAnim.setValue(visible ? 0 : -400);
     Animated.timing(slideAnim, {
       toValue: visible ? 0 : -400,
-      duration: 300,
+      duration: 60,
       useNativeDriver: true,
     }).start();
   }, [visible]);
+
+  const [tempSelected, setTempSelected] =
+    useState<string[]>(selectedCategories);
+
+  useEffect(() => {
+    if (mode === "list") setTempSelected(selectedCategories);
+  }, [selectedCategories, visible]);
+
   const toggleCategory = (catKey: string) => {
     let updated: string[];
     if (catKey === "all") {
       updated = [];
+      onSelect(updated);
+      return;
     } else {
       if (mode === "ar") {
-        // AR mod → selectedCategories kullan
         if (selectedCategories.includes(catKey)) {
           updated = selectedCategories.filter((c) => c !== catKey);
         } else {
           updated = [...selectedCategories, catKey];
         }
-        onSelect(updated); // ✅ AR modda anında uygula
+        onSelect(updated);
       } else {
-        // LIST mod → tempSelected kullan
         if (tempSelected.includes(catKey)) {
           updated = tempSelected.filter((c) => c !== catKey);
         } else {
           updated = [...tempSelected, catKey];
         }
-        setTempSelected(updated); // ✅ sadece local state güncellenir
+        setTempSelected(updated);
       }
     }
   };
-
-  // List moduna özel geçici seçim state
-  const [tempSelected, setTempSelected] =
-    useState<string[]>(selectedCategories);
-  useEffect(() => {
-    if (mode === "list") setTempSelected(selectedCategories);
-  }, [selectedCategories, visible]);
 
   const renderCategories = (data: string[]) => (
     <FlatList
@@ -104,37 +193,28 @@ export default function CategoryFilter({
       renderItem={({ item }) => {
         const isSelected =
           (item.key === "all" && data.length === 0) || data.includes(item.key);
+
         return (
-          <TouchableOpacity
+          <Pressable
             style={styles.catItem}
             onPress={() => toggleCategory(item.key)}
-            activeOpacity={0.7} // basınca opacity düşer
           >
-            <View
-              style={[
-                styles.iconWrapper,
-                isSelected
-                  ? { backgroundColor: Colors.accent }
-                  : { backgroundColor: Colors.primary },
-              ]}
-            >
-              <MaterialCommunityIcons
-                name={item.icon as any}
-                size={24}
-                color={isSelected ? Colors.white : Colors.primaryDark}
-              />
-            </View>
+            <AnimatedCategoryIcon
+              isSelected={isSelected}
+              icon={item.icon}
+              categoryKey={item.key}
+            />
             <Text
               style={[
                 styles.catLabel,
                 isSelected
-                  ? { color: Colors.accent }
+                  ? { color: categoryColors[item.key] || Colors.accent }
                   : { color: Colors.textDark },
               ]}
             >
               {item.label}
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         );
       }}
     />
@@ -154,7 +234,7 @@ export default function CategoryFilter({
           >
             <View style={styles.header}>
               <Text style={styles.title}>Select Categories</Text>
-              <TouchableOpacity onPress={onClose} activeOpacity={0.7}>
+              <TouchableOpacity onPress={onClose} activeOpacity={0.5}>
                 <MaterialCommunityIcons
                   name="close"
                   size={24}
@@ -162,7 +242,6 @@ export default function CategoryFilter({
                 />
               </TouchableOpacity>
             </View>
-            {/* Search */}
             <View style={styles.searchWrapper}>
               <MaterialCommunityIcons
                 name="magnify"
@@ -190,7 +269,7 @@ export default function CategoryFilter({
               <Text style={styles.title}>Filter Categories</Text>
               <TouchableOpacity onPress={onClose}>
                 <MaterialCommunityIcons
-                  name="close"
+                  name="filter"
                   size={24}
                   color={Colors.primaryDark}
                 />
@@ -198,12 +277,11 @@ export default function CategoryFilter({
             </View>
             {renderCategories(tempSelected)}
 
-            {/* Apply & Clear butonları */}
             <View style={styles.actionRow}>
               <TouchableOpacity
                 style={[styles.btn, { backgroundColor: "#e5e7eb" }]}
                 onPress={() => setTempSelected([])}
-                activeOpacity={0.7}
+                activeOpacity={0.6}
               >
                 <Text style={[styles.btnText, { color: Colors.textDark }]}>
                   Clear
@@ -215,7 +293,7 @@ export default function CategoryFilter({
                   onSelect(tempSelected);
                   onClose();
                 }}
-                activeOpacity={0.7}
+                activeOpacity={0.6}
               >
                 <Text style={[styles.btnText, { color: Colors.white }]}>
                   Apply
@@ -280,14 +358,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     marginVertical: 10,
-  },
-  iconWrapper: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 6,
   },
   catLabel: {
     fontSize: 13,
