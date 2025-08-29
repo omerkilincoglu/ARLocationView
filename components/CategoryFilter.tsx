@@ -252,6 +252,7 @@ export default function CategoryFilter({
               <TextInput
                 style={styles.searchInput}
                 placeholder="Search categories..."
+                placeholderTextColor={Colors.textLight}
                 value={searchQuery}
                 onChangeText={setSearchQuery}
               />
@@ -342,18 +343,22 @@ const styles = StyleSheet.create({
   searchWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#f1f5f9",
-    marginHorizontal: 16,
-    marginBottom: 12,
-    paddingHorizontal: 12,
+    backgroundColor: "#f8fafc",
+    paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 20,
+    marginHorizontal: 16, // ✅ iki yandan boşluk
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#e2e8f0",
   },
   searchInput: {
     flex: 1,
     fontSize: 14,
+    marginLeft: 6,
     color: Colors.textDark,
   },
+
   catItem: {
     flex: 1,
     alignItems: "center",

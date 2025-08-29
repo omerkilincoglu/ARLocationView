@@ -149,26 +149,36 @@ export default function HomeScreen() {
 
         headSub = await Location.watchHeadingAsync((h) => {
           if (h.trueHeading && h.trueHeading > 0) {
-            const diff = Math.abs(h.trueHeading - lastHeadingRef.current);
-            if (diff < 0.5) return;
+            const corrected = h.trueHeading;
+            const diff = Math.abs(corrected - lastHeadingRef.current);
 
-            const alpha = Math.min(0.3, 0.05 + diff * 0.02);
+            // 📌 Telefon sabitse (1° altında oynama) → hiç güncelleme
+            if (diff < 1.0) return;
+
+            // 📌 Telefon dönmeye başladı → hızlı tepki
+            const alpha = 0.25;
+
             const blended = smoothAngle(
               lastHeadingRef.current,
-              h.trueHeading,
+              corrected,
               alpha
             );
 
+            // Ortalama için buffer
             headingBuffer.current.push(blended);
-            if (headingBuffer.current.length > 5) {
+            if (headingBuffer.current.length > 8) {
               headingBuffer.current.shift();
             }
+
             const avg =
               headingBuffer.current.reduce((a, b) => a + b, 0) /
               headingBuffer.current.length;
 
-            lastHeadingRef.current = avg;
-            setHeading(avg);
+            // Yuvarlama (0.5° hassasiyet)
+            const rounded = Math.round(avg * 2) / 2;
+
+            lastHeadingRef.current = rounded;
+            setHeading(rounded);
           }
         });
       };
@@ -224,9 +234,10 @@ export default function HomeScreen() {
         </>
       ) : (
         <>
-          {isFocused && (
+          {isFocused && cameraPermission?.granted && (
             <CameraView style={StyleSheet.absoluteFillObject} facing="back" />
           )}
+
           <InfoBar mode="bottom" navigation={navigation} />
           {/* Markerlar */}
           <View style={StyleSheet.absoluteFillObject} pointerEvents="box-none">

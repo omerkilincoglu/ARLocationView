@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
   filterBar: {
     position: "absolute",
     right: 15,
-    top: "8%", // pause’un üstünde
+    top: "6%", // pause’un üstünde
     alignItems: "center",
     justifyContent: "center",
     zIndex: 30,
